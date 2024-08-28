@@ -3,11 +3,34 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import FeatureSection from '@/components/FeatureSection';
 import Link from 'next/link';
+import {Button} from '@/components/ui/button'
+import GalleryPreview from '@/components/GalleryPreview';
 
 export const metadata: Metadata = {
   title: 'Tech Inclusion Deaf Initiative',
   description: 'Empowering the Deaf community through STEM education.',
 };
+
+
+const galleryImages = [
+  {
+    src: '/assets/images/abuvic.jpg', // Replace with actual image paths
+    alt: 'Image 1 Descriptio',
+  },
+  {
+    src: '/assets/images/team.jpg',
+    alt: 'Image 2 Description',
+  },
+  {
+    src: '/assets/images/program.jpg',
+    alt: 'Image 3 Description',
+  },
+  {
+    src: '/assets/images/program.jpg',
+    alt: 'Image 3 Description',
+  },
+  // Add more images as needed
+];
 
 export default function HomePage() {
   return (
@@ -58,28 +81,34 @@ export default function HomePage() {
             <FeatureSection
             title="Our Mission"
             description="To empower deaf children and adults to reach their full potential in STEM fields by providing accessible, high-quality education and resources."
-            imageUrl="/assets/images/lengnen.jpg" // Replace with actual image
-            imageAlt="Description of mission image"
+            imageUrl="/assets/images/abuvic.jpg" // Replace with actual image
+            imageAlt="Abubakar and Victor smiled together"
             bgColor="bg-gray-100" // Optional background color
+            linkUrl="/about" // Link to the About page
+            linkText="Read More" // Custom link text
             />
+
             <FeatureSection
             title="About Us"
             description="We are a passionate team of educators, advocates, and technology professionals dedicated to bridging the gap in STEM education for the deaf community. Learn more about our story and the impact we're making."
-            imageUrl="/assets/images/lengnen.jpg" // Replace with actual image
-            imageAlt="Description of about us image"
+            imageUrl="/assets/images/team.jpg" // Replace with actual image
+            imageAlt="Abubakar and Victor smiled together"
             reverse // Image on the right
+            linkUrl="/about" // Link to the About page
+            linkText="Learn More" // Custom link text
           />
 
               <FeatureSection 
                 title="About the STEM School"
                 description="Learn about our innovative STEM curriculum designed for deaf children and adults."
-                imageUrl="/assets/images/lengnen.jpg"
+                imageUrl="/assets/images/STEM.jpg"
                 imageAlt="Students working on a STEM project"
                 />
+                <GalleryPreview images={galleryImages} galleryLink="/gallery" />
                 <FeatureSection 
                 title="Get Involved"
                 description="Make a difference in the lives of deaf individuals. Volunteer or donate today!"
-                imageUrl="/assets/images/lengnen.jpg"
+                imageUrl="/assets/images/program.jpg"
                 imageAlt="Volunteers helping at an event"
                 reverse // Reverse the layout for this section
                 />

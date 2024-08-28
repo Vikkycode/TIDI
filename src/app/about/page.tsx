@@ -14,13 +14,13 @@ const teamMembers = [
     name: 'Abubakar El-mumbu Idris',
     role: 'Founder & CEO',
     bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
-    imageUrl: '/assets/images/lengnen.jpg', // Replace with actual image path
+    imageUrl: '/assets/images/Abubakar.jpg', // Replace with actual image path
   },
   {
     name: 'Victor Oricha',
     role: 'Co-Founder & COO',
     bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
-    imageUrl: '/assets/images/lengnen.jpg', // Replace with actual image path
+    imageUrl: '/assets/images/victor.jpg', // Replace with actual image path
   },
   // Add more team members here
 ];
@@ -54,7 +54,7 @@ export default function AboutPage() {
           description="Our journey began with a simple but powerful belief: everyone, regardless of hearing ability, deserves equal opportunities in STEM. We are a passionate team of educators, advocates, and technology professionals driven by the mission to bridge the gap in STEM education for the Deaf community. Our hybrid model of education uniquely combines the flexibility of an online platform with the personalized experience of a physical tech school.
           The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.
 "
-          imageUrl='/assets/images/lengnen.jpg' 
+          imageUrl='/assets/images/team.jpg' 
           imageAlt="Students learning in the TIDI tech school"
           bgColor="bg-white"
         />
@@ -208,9 +208,9 @@ export default function AboutPage() {
               Support our mission by donating, volunteering, or partnering with us.
             </p>
             <div className="flex justify-center space-x-4">
-              <a href="/donate" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+              {/* <a href="/donate" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">
                 Donate
-              </a>
+              </a> */}
               <a href="/get-involved" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition duration-300">
                 Get Involved
               </a>

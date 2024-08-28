@@ -24,8 +24,8 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member, isSelected, onC
         src={member.imageUrl}
         alt={member.name}
         width={400} // Adjust as needed
-        height={500} // Adjust as needed
-        className="object-cover"
+        height={300} // Adjust as needed
+        className="object-cover h-[300px] w-full"
       />
 
       {/* Overlay */}

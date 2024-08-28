@@ -17,7 +17,7 @@ interface NavLink {
 const navLinks:NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  // { label: 'STEM School', href: '/stem-school' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Resources', href: '/resources' },
 ];
@@ -43,7 +43,7 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <Button>Donate</Button>
+          {/* <Button>Donate</Button> */}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -73,7 +73,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Button>Donate</Button>
+            {/* <Button>Donate</Button> */}
           </nav>
         </SheetContent>
       </Sheet>
