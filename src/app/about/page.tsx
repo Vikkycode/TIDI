@@ -4,7 +4,7 @@ import Image from 'next/image';
 import FeatureSection from '@/components/FeatureSection'; 
 import {Button} from '@/components/ui/button'
 import { useState } from 'react';
-
+import TeamMemberCard from '@/components/TeamCard';
 // Image imports (replace with your actual image paths)
 import storyImage from '@/../public/assets/images/lengnen.jpg'; 
 import teamImage from '@/../public/assets/images/lengnen.jpg'; 
@@ -14,13 +14,13 @@ const teamMembers = [
   {
     name: 'Abubakar El-mumbu Idris',
     role: 'Founder & CEO',
-    bio: 'A passionate advocate for digital inclusion, Abubakar founded TIDI...',
+    bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
     imageUrl: '/assets/images/lengnen.jpg', // Replace with actual image path
   },
   {
     name: 'Victor Oricha',
     role: 'Co-Founder & COO',
-    bio: 'A passionate advocate for digital inclusion...',
+    bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
     imageUrl: '/assets/images/lengnen.jpg', // Replace with actual image path
   },
   // Add more team members here
@@ -52,7 +52,9 @@ export default function AboutPage() {
         {/* Our Story Section */}
         <FeatureSection
           title="Our Story"
-          description="Our journey began with a simple but powerful belief: everyone, regardless of hearing ability, deserves equal opportunities in STEM. We are a passionate team of educators, advocates, and technology professionals driven by the mission to bridge the gap in STEM education for the Deaf community. Our hybrid model of education uniquely combines the flexibility of an online platform with the personalized experience of a physical tech school."
+          description="Our journey began with a simple but powerful belief: everyone, regardless of hearing ability, deserves equal opportunities in STEM. We are a passionate team of educators, advocates, and technology professionals driven by the mission to bridge the gap in STEM education for the Deaf community. Our hybrid model of education uniquely combines the flexibility of an online platform with the personalized experience of a physical tech school.
+          The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.
+"
           imageUrl={storyImage} 
           imageAlt="Students learning in the TIDI tech school"
           bgColor="bg-white"
@@ -117,24 +119,17 @@ export default function AboutPage() {
             <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
               {/* Team Member Images (Carousel or List) */}
               <div className="w-full md:w-1/2">
-                <ul className="flex space-x-4 justify-center md:justify-start">
-                  {teamMembers.map((member) => (
-                    <li key={member.name}>
-                      <Button 
-                        onClick={() => setSelectedTeamMember(member)} 
-                        className={`rounded-full overflow-hidden ${selectedTeamMember.name === member.name ? 'ring-4 ring-blue-500' : ''}`}
-                      >
-                        <Image 
-                          src={member.imageUrl} 
-                          alt={member.name} 
-                          width={400} 
-                          height={500} 
-                          className="object-cover" 
-                        />
-                      </Button>
-                    </li>
-                  ))}
-                </ul>
+              <ul className="flex flex-wrap justify-center gap-8"> 
+                {teamMembers.map((member) => (
+                  <li key={member.name}>
+                    <TeamMemberCard 
+                      member={member} 
+                      isSelected={selectedTeamMember.name === member.name} 
+                      onClick={() => setSelectedTeamMember(member)} 
+                    />
+                  </li>
+                ))}
+              </ul>
               </div>
 
               {/* Selected Team Member Bio */}
