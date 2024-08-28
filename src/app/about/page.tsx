@@ -1,6 +1,5 @@
 'use client'
 import { Metadata } from 'next';
-import Image from 'next/image';
 import FeatureSection from '@/components/FeatureSection'; 
 import {Button} from '@/components/ui/button'
 import { useState } from 'react';
@@ -55,7 +54,7 @@ export default function AboutPage() {
           description="Our journey began with a simple but powerful belief: everyone, regardless of hearing ability, deserves equal opportunities in STEM. We are a passionate team of educators, advocates, and technology professionals driven by the mission to bridge the gap in STEM education for the Deaf community. Our hybrid model of education uniquely combines the flexibility of an online platform with the personalized experience of a physical tech school.
           The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.
 "
-          imageUrl={storyImage} 
+          imageUrl='/assets/images/lengnen.jpg' 
           imageAlt="Students learning in the TIDI tech school"
           bgColor="bg-white"
         />
