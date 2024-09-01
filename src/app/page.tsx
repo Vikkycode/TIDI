@@ -84,64 +84,6 @@ export default function HomePage() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
               aria-label="A grid showcasing our impact in three areas"
             >
-              {/* Impact Card 1 */}
-              {/* <Card className="transform transition duration-300 ease-in-out hover:scale-105">
-                <Image
-                  src="/assets/images/lengnen.jpg"
-                  alt="Impactful Image 1 Description"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-64 rounded-t-lg"
-                />
-                <CardContent>
-                  <CardTitle className="text-xl font-semibold text-gray-800 mb-2">
-                    Title of Impact 1
-                  </CardTitle>
-                  <CardDescription>
-                    Short description of the impact or achievement. Make it
-                    engaging and concise.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              
-              <Card className="transform transition duration-300 ease-in-out hover:scale-105">
-                <Image
-                  src="/assets/images/lengnen.jpg"
-                  alt="Impactful Image 2 Description"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-64 rounded-t-lg"
-                />
-                <CardContent>
-                  <CardTitle className="text-xl font-semibold text-gray-800 mb-2">
-                    Title of Impact 2
-                  </CardTitle>
-                  <CardDescription>
-                    Short description of the impact or achievement. Make it
-                    engaging and concise.
-                  </CardDescription>
-                </CardContent>
-              </Card>
-
-              <Card className="transform transition duration-300 ease-in-out hover:scale-105">
-                <Image
-                  src="/assets/images/lengnen.jpg"
-                  alt="Impactful Image 3 Description"
-                  width={400}
-                  height={300}
-                  className="object-cover w-full h-64 rounded-t-lg"
-                />
-                <CardContent>
-                  <CardTitle className="text-xl font-semibold text-gray-800 mb-2">
-                    Title of Impact 3
-                  </CardTitle>
-                  <CardDescription>
-                    Short description of the impact or achievement. Make it
-                    engaging and concise.
-                  </CardDescription>
-                </CardContent>
-              </Card> */}
             </div>
 
             {/* Feature Sections */}
