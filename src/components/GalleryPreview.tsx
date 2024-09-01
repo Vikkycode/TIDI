@@ -1,11 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button'; // Assuming you're using Shadcn UI
+import { Button } from '@/components/ui/button'; 
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; 
 
 interface GalleryPreviewProps {
-  images: { src: string; alt: string }[];
-  galleryLink: string; // Link to the full gallery page
+  images: { 
+    src: string; 
+    alt: string; 
+    caption?: string; // Add an optional caption property to your image objects
+  }[];
+  galleryLink: string; 
 }
 
 const GalleryPreview: React.FC<GalleryPreviewProps> = ({ images, galleryLink }) => {
@@ -17,24 +22,28 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({ images, galleryLink }) 
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {images.slice(0, 3).map((image, index) => ( // Display up to 3 images
-            <div 
-            key={index} 
-            className="relative rounded-lg overflow-hidden shadow-md transform transition duration-300 ease-in-out hover:scale-105"
-            style={{ position: 'relative', paddingBottom: '56.25%' /* Aspect Ratio 16:9 */ }}>
-              <Image
-                src={image.src}
-                alt={image.alt}
-                layout="fill" // Make the image responsive
-                objectFit="cover"
-                className="rounded-lg"
-              />
-              {/* Optional: Add a semi-transparent overlay on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition duration-300 ease-in-out"></div>
-            </div>
+          {images.slice(0, 3).map((image, index) => ( 
+            <Card key={index} className="relative rounded-lg overflow-hidden shadow-md transform transition duration-300 ease-in-out hover:scale-105">
+              <Link href={galleryLink}> 
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={400} 
+                  height={300} 
+                  className="object-cover w-full h-[300px] rounded-t-lg"
+                />
+              </Link>
+              {/* Add CardContent for caption */}
+              {image.caption && ( // Conditionally render the caption
+                <CardContent>
+                  <CardDescription className="text-gray-600">
+                    {image.caption}
+                  </CardDescription>
+                </CardContent>
+              )}
+            </Card>
           ))}
         </div>
-
         <Link href={galleryLink}>
           <Button className="mt-8">View Full Gallery</Button>
         </Link>
