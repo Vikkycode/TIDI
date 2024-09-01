@@ -3,11 +3,14 @@ import { Metadata } from 'next';
 import FeatureSection from '@/components/FeatureSection'; 
 import {Button} from '@/components/ui/button'
 import { useState } from 'react';
+import Link from 'next/link'
 import TeamMemberCard from '@/components/TeamCard';
+import ThematicAreaCard from '@/components/ThematicAreaCard';
+import thematicAreas from '@/lib/data';
 // Image imports (replace with your actual image paths)
 import storyImage from '@/../public/assets/images/lengnen.jpg'; 
 import teamImage from '@/../public/assets/images/lengnen.jpg'; 
-
+import { GraduationCapIcon, BriefcaseIcon, MegaphoneIcon, UsersIcon } from 'lucide-react';
 // Data for team members (replace with your team's information)
 const teamMembers = [
   {
@@ -24,6 +27,7 @@ const teamMembers = [
   },
   // Add more team members here
 ];
+
 
 const metadata: Metadata = {
   title: 'About Us - Tech Inclusion Deaf Initiative',
@@ -154,37 +158,12 @@ export default function AboutPage() {
               Our Thematic Areas
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Tech Education */}
-              <div>
-                <h3 className="text-xl font-bold text-blue-500 mb-4">Tech Education</h3>
-                <p className="text-gray-600">
-                  We provide specialized training in key areas such as coding, data analysis, digital literacy, and other in-demand tech skills, designed with the specific needs of Deaf learners in mind.
-                </p>
-              </div>
-
-              {/* Career Development */}
-              <div>
-                <h3 className="text-xl font-bold text-blue-500 mb-4">Career Development</h3>
-                <p className="text-gray-600">
-                  We offer mentorship, job placement assistance, and career guidance to help Deaf learners navigate the job market and achieve their professional goals.
-                </p>
-              </div>
-
-              {/* Advocacy and Awareness */}
-              <div>
-                <h3 className="text-xl font-bold text-blue-500 mb-4">Advocacy & Awareness</h3>
-                <p className="text-gray-600">
-                  We advocate for the rights of Deaf individuals and work to raise awareness about the importance of accessibility in education and employment.
-                </p>
-              </div>
-
-              {/* Community Support */}
-              <div>
-                <h3 className="text-xl font-bold text-blue-500 mb-4">Community Support</h3>
-                <p className="text-gray-600">
-                  We provide a supportive environment where Deaf individuals can connect, learn, and grow together through online forums, in-person events, and our physical tech school.
-                </p>
-              </div>
+              {thematicAreas?.map(area => (
+              <ThematicAreaCard 
+              key={area.slug}
+              area={area}
+               />
+                ))}
             </div>
           </div>
         </section>
