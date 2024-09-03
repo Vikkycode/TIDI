@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import emailjs from '@emailjs/nodejs';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 
@@ -32,3 +32,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(); // Method Not Allowed
   }
 };
+export { handler as default};

@@ -68,7 +68,7 @@ export default function Contact() {
       }
     };
 
-
+;
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       <main className="container mx-auto px-4 md:px-0 py-16">
@@ -78,7 +78,7 @@ export default function Contact() {
               Contact Us
             </CardTitle>
             <CardDescription className="text-center text-gray-600">
-              We'd love to hear from you!
+              {"We'd love to hear from you!"}
             </CardDescription>
           </CardHeader>
           <CardContent>
