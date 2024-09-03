@@ -32,14 +32,14 @@ const thematicAreas: ThematicArea[] = [
       slug: 'advocacy-awareness',
       title: 'Advocacy & Awareness',
       description: 'We advocate for the rights of Deaf individuals and work to raise awareness about the importance of accessibility in education and employment.',
-      icon: <Image src={parnter} className='w-32 h-32 ' alt={'Parntership'} />,
+      icon: <Image src={inequality} className='w-32 h-32 ' alt={'Parntership'} />,
       content: 'This is the detailed content for Advocacy & Awareness. You can discuss the specific advocacy work you do, the events you organize to raise awareness, and the impact you have made in terms of policy changes or increased accessibility.',
     },
     {
       slug: 'community-support',
       title: 'Community Support',
       description: 'We provide a supportive environment where Deaf individuals can connect, learn, and grow together through online forums, in-person events, and our physical tech school.',
-      icon: <Image src={inequality} className='w-32 h-32 ' alt={'reduced inequality'} />,
+      icon: <Image src={parnter} className='w-32 h-32 ' alt={'reduced inequality'} />,
       content: 'This is the detailed content for Community Support. You can describe the online and offline communities you have built, the types of events you host, and the benefits that Deaf individuals experience by being part of your community.',
     },
   ];

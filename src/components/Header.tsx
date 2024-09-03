@@ -18,8 +18,9 @@ const navLinks:NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Gallery', href: '/gallery' },
+  // { label: 'Contact', href: '/contact'},
   { label: 'Get Involved', href: '/get-involved' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'resources', href: '/resources' },
 ];
 
 export default function Header() {

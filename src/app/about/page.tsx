@@ -21,13 +21,20 @@ const teamMembers = [
   {
     name: 'Abubakar El-mumbu Idris',
     role: 'Founder & CEO',
-    bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
+    bio: `Founder and CEO, Tech Inclusion for the Deaf Initiative (TIDI)
+Abubakar Mumbu Idris is a dedicated advocate for disability inclusion and a pioneering leader in the field of accessible technology education. As the founder and CEO of Tech Inclusion for the Deaf Initiative (TIDI), Abubakar has committed his career to bridging the digital divide for Deaf individuals across Nigeria and beyond. His work focuses on providing Deaf learners with the tools, skills, and resources needed to thrive in today’s technology-driven world.
+\n
+Born and raised in Nigeria, Abubakar faced significant challenges as a Deaf individual navigating the educational system. During his time as an undergraduate student, he and a fellow student struggled to find accessible tech classes or mentors who could support their learning needs. Undeterred, they taught themselves the necessary tech skills, an experience that would later inspire the creation of TIDI. This personal journey fueled his passion for ensuring that other Deaf individuals would not have to face the same barriers.\n\n\n
+Although TIDI is in its early stages, Abubakar’s vision is clear: to create an inclusive educational platform that empowers Deaf learners with essential tech skills such as coding, data analysis, and digital literacy. TIDI’s innovative approach, combining both online and in-person training, is designed to address the unique challenges faced by the Deaf community in accessing quality tech education. While the impact of TIDI is still growing, Abubakar is committed to expanding its reach and effectiveness, with the goal of making a lasting difference in the lives of Deaf individuals.\n
+In addition to his work with TIDI, Abubakar is a seasoned data analyst with over 4 years of experience. He is passionate about training and empowering Deaf individuals, particularly women and youth, to secure meaningful employment and become leaders in their communities. While TIDI’s journey has just begun, Abubakar’s dedication to advocacy, education, and empowerment positions him as a key figure in the movement for disability inclusion in Nigeria.\n
+Abubakar’s work is driven by a simple yet powerful belief: that with the right support, Deaf individuals can achieve anything. Through TIDI, he aims to break down barriers and create opportunities for Deaf learners, ensuring they are not only included in the digital revolution but are also poised to lead it.
+`,
     imageUrl: '/assets/images/Abubakar.jpg', // Replace with actual image path
   },
   {
     name: 'Victor Oricha',
     role: 'Co-Founder & COO',
-    bio: 'A passionate advocate for digital inclusion.The idea for TIDI was born out of a personal journey of overcoming challenges. As university students, we struggled to find accessible tech classes or mentors who understood our unique needs as Deaf individuals. With determination and a passion for technology, we taught ourselves the skills we needed. This experience highlighted the lack of support for Deaf students in tech and inspired us to create a platform where others wouldn’t have to face the same obstacles. TIDI was established to ensure that no Deaf learner is left behind and that they have the opportunity to pursue their dreams in the tech industry and beyond.',
+    bio: 'Co-Founder and COO,Tech Inclusion for the Deaf Initiative (TIDI). Victor Oricha is a passionate advocate for inclusive tech education and work as a data science and web developer. I graduated from University of Ilorin with a bachelor degree in Computer Science Education. I equip Deaf youth with tech skill through innovative solution',
     imageUrl: '/assets/images/victor.jpg', // Replace with actual image path
   },
   // Add more team members here
