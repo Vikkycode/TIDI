@@ -101,7 +101,7 @@ export default function HomePage() {
                       We are a passionate team of educators, advocates, and
                       technology professionals dedicated to bridging the gap in
                       STEM education for the deaf community. Learn more about
-                      our story and the impact we're making.
+                      our story and the impact we&apos;ve here making.
                     </p>
                     <Link href="/about">
                       <Button className="mt-4 ml-48">Learn More</Button>
