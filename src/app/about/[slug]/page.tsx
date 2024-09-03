@@ -1,6 +1,4 @@
 'use client'
-import { Metadata } from 'next';
-import { useParams } from 'react-router-dom'; // For dynamic routing (if using React Router)
 import thematicAreas from '@/lib/data';
 // Define an interface for thematic areas
 
@@ -9,7 +7,7 @@ export default function ThematicAreaDetailPage({params}) {
   const id = params.slug; 
   // Find the matching thematic area based on the slug
   const thematicArea = thematicAreas.find(area => area.slug === id);
-  console.log(thematicArea?.slug)
+  // console.log(thematicArea?.slug)
 
   if (!thematicArea) {
     // Handle case where no matching thematic area is found
