@@ -78,7 +78,7 @@ export default function Contact() {
               Contact Us
             </CardTitle>
             <CardDescription className="text-center text-gray-600">
-              We&apos;d love to hear from you!"
+              We&lsquo;d love to hear from you
             </CardDescription>
           </CardHeader>
           <CardContent>
