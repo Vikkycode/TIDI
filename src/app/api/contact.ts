@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           message: message,
           to_email: process.env.EMAIL_TO, // Your recipient email
         },
-        process.env.EMAILJS_USER_ID!
+        // process?.env?.EMAILJS_USER_ID!
       );
 
       if (result.status === 200) {
