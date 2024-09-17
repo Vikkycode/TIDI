@@ -251,7 +251,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {thematicAreas?.map((area) => (
-                <ThematicAreaCard key={area.slug} area={area} />
+                <ThematicAreaCard key={area.slug} {...area} /> 
               ))}
             </div>
           </div>
