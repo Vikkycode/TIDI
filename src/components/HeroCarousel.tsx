@@ -31,14 +31,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timer;
+    let intervalId: NodeJS.Timeout | undefined;
     if (autoPlay) {
       intervalId = setInterval(() => {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
       }, autoPlayInterval);
     }
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId!);
   }, [autoPlay, autoPlayInterval, slides.length]);
 
   const handleDotClick = (index: number) => {
