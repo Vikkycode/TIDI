@@ -99,7 +99,7 @@ export default function Header() {
                   // Nested Dropdown
                   <DropdownMenu>
                     {/* <DropdownMenuTrigger asChild> */}
-                      <DropdownMenuSub className="hover:bg-gray-100">
+                      <DropdownMenuSub>
                         <DropdownMenuSubTrigger
                         className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
                           ${pathname === subLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}>
