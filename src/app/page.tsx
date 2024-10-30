@@ -1,6 +1,7 @@
 'use client';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import HeroCarousel from '@/components/HeroCarousel';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -43,6 +44,41 @@ const galleryImages = [
   // Add more images as needed
 ];
 
+
+interface HeroSlide {
+  title: string;
+  subtitle?: string;
+  imageUrl: string;
+  imageAlt?: string;
+  buttonText?: string;
+  buttonLink?: string;
+}
+
+const slides: HeroSlide[] = [
+  {
+    title: 'Slide 1 Title',
+    subtitle: 'Slide 1 Subtitle',
+    imageUrl: '/assets/images/abuvic.jpg',
+    imageAlt: 'Slide 1 Image',
+    buttonLink: '/about',
+  },
+  // {
+  //     title: 'Slide 2 Title',
+  //     subtitle: 'Slide 2 Subtitle',
+  //     imageUrl: '/assets/images/abuvic.jpg',
+  //     imageAlt: 'Slide 2 Image',
+  //     buttonLink: '/about',
+  //   },
+  //   {
+  //     title: 'Slide 3 Title',
+  //     subtitle: 'Slide 3 Subtitle',
+  //     imageUrl: '/assets/images/abuvic.jpg',
+  //     imageAlt: 'Slide 3 Image',
+  //     buttonLink: '/about',
+  //   },
+  // Add more slides...
+];
+
 export default function HomePage() {
   return (
     <div
@@ -52,27 +88,8 @@ export default function HomePage() {
       <main>
         {/* Hero Section */}
         <section
-          className="bg-gradient-to-r from-blue-500 to-purple-500 py-20 text-white"
-          aria-labelledby="hero-title"
         >
-          <div className="container mx-auto text-center px-4 md:px-0">
-            <h1
-              id="hero-title"
-              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
-            >
-              Tech Inclusion Deaf Initiative
-            </h1>
-            <p className="text-lg md:text-xl mb-8">
-              Empowering the Deaf community to thrive in the world of STEM.
-            </p>
-            <Link
-              href="#learn-more"
-              className="bg-white text-blue-500 font-bold py-3 px-6 rounded-full hover:bg-gray-100 transition duration-300"
-              aria-label="Learn more about our impact"
-            >
-              Learn More
-            </Link>
-          </div>
+      <HeroCarousel slides={slides} />
         </section>
 
         {/* Our Impact Section */}
