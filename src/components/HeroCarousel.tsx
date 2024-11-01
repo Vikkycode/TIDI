@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState,useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -24,22 +24,22 @@ interface HeroCarouselProps {
   
 const HeroCarousel: React.FC<HeroCarouselProps> = ({
   slides,
-  autoPlay = true,
-  autoPlayInterval = 5000,
+  // autoPlay = true,
+  // autoPlayInterval = 5000,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let intervalId: string | number | NodeJS.Timeout | undefined; // No need for type annotation here
-    if (autoPlay) {
-      intervalId = setInterval(() => {
-        setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-      }, autoPlayInterval);
-    }
+  // useEffect(() => {
+  //   let intervalId: string | number | NodeJS.Timeout | undefined; // No need for type annotation here
+  //   if (autoPlay) {
+  //     intervalId = setInterval(() => {
+  //       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+  //     }, autoPlayInterval);
+  //   }
   
-    return () => clearInterval(intervalId); 
-  }, [autoPlay, autoPlayInterval, slides.length]);
+  //   return () => clearInterval(intervalId); 
+  // }, [autoPlay, autoPlayInterval, slides.length]);
   
 
   const handleDotClick = (index: number) => {
