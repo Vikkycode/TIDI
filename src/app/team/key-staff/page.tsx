@@ -45,7 +45,7 @@ const teamData: TeamMember[] = [
 ];
 
 
-const TeamPage: React.FC<TeamMember[]> = () => {
+const TeamPage: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   return (
