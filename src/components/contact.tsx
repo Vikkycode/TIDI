@@ -13,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast} from '@/hooks/use-toast';
+// import { useToast} from '@/hooks/use-toast';
 
 import { useState } from 'react';
 
@@ -26,7 +26,7 @@ export default function Contact() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const { toast } = useToast(); // Get the toast function
+    // const { toast } = useToast(); // Get the toast function
   
     const handleSubmit = async (event: React.FormEvent) => {
       event.preventDefault();
@@ -42,29 +42,29 @@ export default function Contact() {
   
         if (response.ok) {
           // Success toast
-          toast({
-            title: 'Message Sent!',
-            description: 'Thank you for your message. We will be in touch soon.',
-          });
+          // toast({
+          //   title: 'Message Sent!',
+          //   description: 'Thank you for your message. We will be in touch soon.',
+          // });
   
           setName('');
           setEmail('');
           setMessage('');
         } else {
           // Error toast
-          toast({
-            variant: 'destructive',
-            title: 'Error Sending Message',
-            description: 'There was a problem sending your message. Please try again later.',
-          });
+          // toast({
+          //   variant: 'destructive',
+          //   title: 'Error Sending Message',
+          //   description: 'There was a problem sending your message. Please try again later.',
+          // });
         }
       } catch (error) {
         // Error toast
-        toast({
-          variant: 'destructive',
-          title: 'Error Sending Message',
-          description: 'There was a problem sending your message. Please try again later.',
-        });
+        // toast({
+        //   variant: 'destructive',
+        //   title: 'Error Sending Message',
+        //   description: 'There was a problem sending your message. Please try again later.',
+        // });
         console.error('Error submitting form:', error);
       }
     };
