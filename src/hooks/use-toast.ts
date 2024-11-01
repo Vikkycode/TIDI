@@ -2,7 +2,7 @@
 
 // Inspired by react-hot-toast library
 import * as React from "react"
-
+import { useState } from "react"
 import type {
   ToastActionElement,
   ToastProps,
@@ -17,6 +17,7 @@ type ToasterToast = ToastProps & {
   description?: React.ReactNode
   action?: ToastActionElement
 }
+
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",

@@ -1,9 +1,8 @@
 'use client';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import {
   Card,
   CardContent,
-  CardHeader,
   CardTitle,
   CardDescription,
 } from '@/components/ui/card';
@@ -14,11 +13,11 @@ import thematicAreas from '@/lib/data';
 // Image imports (replace with your actual image paths)
 import Image from 'next/image';
 
-const metadata: Metadata = {
-  title: 'About Us - Tech Inclusion Deaf Initiative',
-  description:
-    'Learn more about our mission, team, and impact in empowering the Deaf community through STEM education.',
-};
+// const metadata: Metadata = {
+//   title: 'About Us - Tech Inclusion Deaf Initiative',
+//   description:
+//     'Learn more about our mission, team, and impact in empowering the Deaf community through STEM education.',
+// };
 
 export default function AboutPage() {
   return (

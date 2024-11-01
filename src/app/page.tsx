@@ -1,5 +1,5 @@
 'use client';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import Image from 'next/image';
 import HeroCarousel from '@/components/HeroCarousel';
 import Link from 'next/link';
@@ -15,10 +15,10 @@ import {
 import GalleryPreview from '@/components/GalleryPreview';
 import Contact from '@/components/contact';
 
-const metadata: Metadata = {
-  title: 'Tech Inclusion Deaf Initiative',
-  description: 'Empowering the Deaf community through STEM education.',
-};
+// const metadata: Metadata = {
+//   title: 'Tech Inclusion Deaf Initiative',
+//   description: 'Empowering the Deaf community through STEM education.',
+// };
 
 const galleryImages = [
   {

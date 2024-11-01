@@ -1,4 +1,4 @@
-import { DefaultDeserializer } from "v8";
+import React from 'react';
 import Gallery from '@/components/Gallery'
 
 const galleryImages: { src: string; alt: string }[] = [

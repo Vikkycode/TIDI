@@ -1,13 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from '@/components/ui/card'; // Assuming you have a Card component from Shadcn UI
+import {Card} from '@/components/ui/card'; // Assuming you have a Card component from Shadcn UI
 import { Button } from './ui/button';
 interface GalleryImage {
   src: string;

@@ -1,14 +1,7 @@
 'use client'
+import React from 'react';
 import thematicAreas from '@/lib/data';
 
-// Define an interface for thematic areas
-interface ThematicArea {
-  slug: string;
-  title: string;
-  icon: React.ReactNode;
-  description: string;
-  content?: string; // Optional content for the detail page
-}
 
 interface Params {
   slug: string;

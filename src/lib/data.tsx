@@ -1,4 +1,4 @@
-import { GraduationCapIcon, BriefcaseIcon, MegaphoneIcon, UsersIcon } from 'lucide-react';
+import React from 'react'
 import qualityedu from '@/../public/assets/icons/E-WEB-Goal-04.png'
 import economic from '@/../public/assets/icons/E-WEB-Goal-08.png'
 import parnter from '@/../public/assets/icons/E-WEB-Goal-17.png'

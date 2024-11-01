@@ -1,5 +1,6 @@
 'use client';
-import { Metadata } from 'next';
+import React from 'react';
+// import { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,10 +17,10 @@ import { useToast} from '@/hooks/use-toast';
 
 import { useState } from 'react';
 
-const metadata: Metadata = {
-  title: 'Contact Us - Tech Inclusion Deaf Initiative',
-  description: 'Get in touch with us.',
-};
+// const metadata: Metadata = {
+//   title: 'Contact Us - Tech Inclusion Deaf Initiative',
+//   description: 'Get in touch with us.',
+// };
 
 export default function ContactPage() {
     const [name, setName] = useState('');

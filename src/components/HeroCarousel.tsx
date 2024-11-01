@@ -31,15 +31,16 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let intervalId: NodeJS.Timeout | undefined;
+    let intervalId: number | undefined; // Use 'number' for intervalId
     if (autoPlay) {
       intervalId = setInterval(() => {
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
       }, autoPlayInterval);
     }
-
-    return () => clearInterval(intervalId!);
+  
+    return () => clearInterval(intervalId); // No need for '!'
   }, [autoPlay, autoPlayInterval, slides.length]);
+
 
   const handleDotClick = (index: number) => {
     setCurrentSlide(index);

@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -10,7 +9,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu";
-import { MenuIcon, XIcon, ChevronsDownIcon,ArrowDownIcon } from 'lucide-react';
+import { MenuIcon, XIcon} from 'lucide-react';
 import { useState } from 'react';
 import { DropdownMenuPortal, DropdownMenuSub } from '@radix-ui/react-dropdown-menu';
 import { usePathname } from 'next/navigation';

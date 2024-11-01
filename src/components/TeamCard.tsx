@@ -1,5 +1,6 @@
+import React from 'react';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // Assuming you have a Card component from Shadcn UI
+import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card'; // Assuming you have a Card component from Shadcn UI
 
 interface TeamMemberCardProps {
   member: {
