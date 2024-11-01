@@ -39,26 +39,23 @@ const navLinks: NavLink[] = [
     ]
   },
   { 
-    label: 'Our Stories', 
+    label: 'Our Purpose', 
     dropdown: [
-      { label: 'Press Release', href: '/stories/press-release' },
-      { label: 'Blog Posts', href: '/stories/blog-posts' },
-      { label: 'Policy Brief', href: '/stories/policy-brief' },
+      { label: 'Mission', href: '/purpose/mission' },
+      { label: 'Vision', href: '/purpose/vision' },
     ]
   },
   { 
-    label: 'Reports', 
+    label: 'Guiding Principles', 
     dropdown: [
-      { label: 'Project Reports', href: '/reports/project-reports' },
-      { label: 'Annual Reports', href: '/reports/annual-reports' },
-      { label: 'Financial Reports', href: '/reports/financial-reports' },
+      { label: 'Core Values', href: '/principle/values' },
     ]
   },
   { 
-    label: 'Opportunities', 
+    label: 'What We Do', 
     dropdown: [
-      { label: 'Careers', href: '/opportunities/careers' },
-      { label: 'Become a Volunteer', href: '/opportunities/volunteer' },
+      { label: 'Key Programs', href: '/programs' },
+      { label: 'Services', href: '/services' },
     ]
   },
   { 
