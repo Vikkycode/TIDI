@@ -126,9 +126,11 @@ const TeamPage: React.FC = () => {
                 <CardDescription className="text-gray-700 mb-4">
                   {selectedMember.role}
                 </CardDescription>
-                <p className="text-gray-600">
+                <div className="overflow-y-auto flex-grow"> {/* Added scrollable container */}
+                  <p className="text-gray-600">
                   {selectedMember.bio}
-                </p>
+                  </p>
+        </div>
 
                 {/* Social Links (Optional) */}
                 {selectedMember.socialLinks && (
