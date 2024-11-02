@@ -13,7 +13,14 @@ import { MenuIcon, XIcon} from 'lucide-react';
 import { useState } from 'react';
 import { DropdownMenuPortal, DropdownMenuSub } from '@radix-ui/react-dropdown-menu';
 import { usePathname } from 'next/navigation';
-import { FaFacebook, FaTwitter, FaInstagram, FaPhone,FaMailBulk } from 'react-icons/fa';
+import { 
+  FaFacebook, 
+  FaTwitter, 
+  FaInstagram, 
+  FaPhone,
+  // FaMailBulk 
+} 
+  from 'react-icons/fa';
 import { IoMdArrowDropdown } from 'react-icons/io' 
 
 interface NavLink {
