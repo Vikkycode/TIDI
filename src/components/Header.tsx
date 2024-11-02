@@ -81,84 +81,84 @@ export default function Header() {
 
   
   const renderNavLink = (link: NavLink) => (
-    <div key={link.label} className="relative"> 
+    <div key={link.label} className="relative">
       {link.dropdown ? (
         <DropdownMenu>
-          {/* Dropdown Trigger */}
           <DropdownMenuTrigger asChild>
             <Link
-            href={link.href || ''}
-            className={`text-gray-600 uppercase flex items-center space-x-4 hover:text-blue-500 transition duration-300
-              ${pathname === link.href && 'border-b-4 pb-[18px]  border-blue-500 text-blue-500'}`}>
+              href={link.href || ''}
+              className={`text-gray-600 uppercase flex items-center space-x-4 hover:text-blue-500 transition duration-300
+                ${pathname === link.href && 'border-b-4 pb-[18px]  border-blue-500 text-blue-500'}`}
+            >
               {link.label}
-              <IoMdArrowDropdown className='h-6 w-6 ml-2' />
+              <IoMdArrowDropdown className="h-6 w-6 ml-2" />
             </Link>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-white shadow-md rounded-none">
-            {/* Dropdown Content */}
             {link.dropdown.map((subLink) => (
               <div key={subLink.label}>
-                {subLink.dropdown ? ( 
+                {subLink.dropdown ? (
                   // Nested Dropdown
                   <DropdownMenu>
-                    {/* <DropdownMenuTrigger asChild> */}
-                      <DropdownMenuSub>
-                        <DropdownMenuSubTrigger
-                        className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
-                          ${pathname === subLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}>
-                        {subLink.label}
-                        </DropdownMenuSubTrigger>
-                        <DropdownMenuPortal>
-                        <DropdownMenuSubContent>
-                      {subLink.dropdown.map((nestedLink) => (
-                        <Link key={nestedLink.href} href={nestedLink.href || ''}
-                        className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
-                          ${pathname === nestedLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}>
-                          <DropdownMenuItem className="hover:bg-gray-100">
-                            <span>
-                            {nestedLink.label}
-                            </span>
-                          </DropdownMenuItem>
-                        </Link>
-                      ))}
-                      </DropdownMenuSubContent>
-                        </DropdownMenuPortal>
-                      </DropdownMenuSub>
-                    {/* </DropdownMenuTrigger> */}
-                    <DropdownMenuSeparator />
                     <DropdownMenuSub>
-
-                    {/* <DropdownMenuPortal className="bg-white shadow-md rounded-md"> */}
-                     
-                    {/* </DropdownMenuPortal> */}
+                      <DropdownMenuSubTrigger
+                        className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
+                            ${pathname === subLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
+                      >
+                        {subLink.label}
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          {subLink.dropdown.map((nestedLink) => (
+                            <DropdownMenuItem 
+                              key={nestedLink.href} 
+                              onClick={() => setIsMobileMenuOpen(false)} // Close on click
+                              className="hover:bg-gray-100"
+                            >
+                              <Link 
+                                href={nestedLink.href || ''}
+                                className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
+                                  ${pathname === nestedLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
+                              >
+                                {nestedLink.label}
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
                     </DropdownMenuSub>
+                    <DropdownMenuSeparator />
                   </DropdownMenu>
                 ) : (
                   // Regular Link
-                  <Link key={subLink.href} href={subLink.href || ''}
+                  <DropdownMenuItem 
+                    key={subLink.href} 
+                    onClick={() => setIsMobileMenuOpen(false)} // Close on click
+                    className={`text-gray-600 uppercase hover:bg-gray-100 hover:text-blue-500 transition duration-300
+                        ${pathname === subLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
                   >
-                    <DropdownMenuItem
-                      className={`text-gray-600 uppercase hover:bg-gray-100 hover:text-blue-500 transition duration-300
-                      ${pathname === subLink.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}>
+                    <Link href={subLink.href || ''}>
                       {subLink.label}
-                    </DropdownMenuItem>
-                  </Link>
+                    </Link>
+                  </DropdownMenuItem>
                 )}
               </div>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <Link 
-          href={link.href || ''} 
+        <Link
+          href={link.href || ''}
           className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
-            ${pathname === link.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
+              ${pathname === link.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
+          onClick={() => setIsMobileMenuOpen(false)} // Close on click for top-level links
         >
           {link.label}
         </Link>
       )}
     </div>
   );
+  
   return (
     <header className="bg-white shadow-md py-4 sticky top-0 z-50">
       <div className="container  mx-auto flex items-center justify-between px-4 md:px-0 space-x-6 text-sm text-blue-500">
