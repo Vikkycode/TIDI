@@ -158,13 +158,13 @@ export default function Header() {
           {/* Phone */}
           <Link href="tel:+2348160000000" className="hover:text-blue-500 flex items-center space-x-10">
           <FaPhone className="h-8 w-8 pr-5" />
-            <span className="sr-only">Phone:</span> +2348160000000
+            <span className="sr-only">Phone:</span> +2347036708999
           </Link>
           {/* Email */}
-          <Link href="mailto:info@tidi.org" className="hover:text-blue-500 flex items-center space-x-10">
+          {/* <Link href="mailto:info@tidi.org" className="hover:text-blue-500 flex items-center space-x-10">
           <FaMailBulk className="h-8 w-8 pr-5" />
             <span className="sr-only">Email:</span> info@tidi.org
-          </Link>
+          </Link> */}
           {/* Social Icons */}
           <div className="flex space-x-4">
             <Link href="#" className="hover:text-blue-500"><FaFacebook /></Link>
