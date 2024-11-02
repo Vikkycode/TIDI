@@ -26,8 +26,11 @@ interface TeamMember {
 const teamData: TeamMember[] = [
   {
     name: 'Abubakar Idris El-mumbu',
-    role: 'Founder & CEO',
-    bio: 'Abubakar is passionate about inclusive edtech program for deaf community',
+    role: 'Co-Founder & CEO, Tech Inclusion for the Deaf Initiative',
+    bio: `Abubakar Mumbu Idris is a dedicated advocate for disability inclusion and a pioneering leader in accessible technology education. As the co-founder and CEO of Tech Inclusion for the Deaf Initiative (TIDI), he has committed his career to bridging the digital divide for Deaf individuals across Nigeria, providing them with essential tools, skills, and resources to thrive in today’s technology-driven world.
+Abubakar's academic background is in History and International Studies, with certifications in digital skills such as Google Data Analytics. His educational journey has been shaped by overcoming the obstacles faced by Deaf individuals in mainstream learning environments. During his undergraduate years, he and a fellow student struggled to find accessible tech classes or mentors, eventually teaching themselves essential tech skills. This experience inspired him to create TIDI, an organization dedicated to ensuring that others in the Deaf community can access quality tech education without facing the same barriers.
+In addition to his role with TIDI, Abubakar has over four years of experience as a data analyst, a role that complements his passion for empowering Deaf individuals, particularly women and youth, to secure meaningful employment and become community leaders. Driven by the belief that Deaf individuals can achieve anything with the right support, Abubakar’s mission is to create inclusive pathways for Deaf learners, equipping them with skills such as coding, data analysis, and digital literacy to lead in the digital era.
+`,
     imageUrl: '/assets/images/Abubakar.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/abubakar-mumbu-idris',
@@ -37,7 +40,7 @@ const teamData: TeamMember[] = [
   },
     {
     name: 'Victor Oricha',
-    role: 'Co-Founder & CTO',
+    role: 'Co-Founder & CTO, Tech Inclusion for the Deaf Initiative',
     bio: 'Victor is passionate about inclusive edtech program for deaf community',
     imageUrl: '/assets/images/victor.jpg',
     socialLinks: {
