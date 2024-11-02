@@ -151,7 +151,11 @@ export default function Header() {
           href={link.href || ''}
           className={`text-gray-600 uppercase hover:text-blue-500 transition duration-300
               ${pathname === link.href && 'border-b-4 pb-[18px] border-blue-500 text-blue-500'}`}
-          onClick={() => setIsMobileMenuOpen(false)} // Close on click for top-level links
+          onClick={() => {
+            if (isMobileMenuOpen){
+              setIsMobileMenuOpen(false);
+            }
+          }} // Close on click for top-level links
         >
           {link.label}
         </Link>
