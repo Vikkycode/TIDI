@@ -107,26 +107,43 @@ export default function HomePage() {
             </div>
 
             {/* Feature Sections */}
-            <section className="py-2 rounded-lg">
-              <div className="container mx-auto px-4 md:px-0">
-                <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20">
-                  <div className="w-full text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl text-center font-bold text-gray-800 mb-4">
-                      About Us
-                    </h2>
-                    <p className="text-gray-600 px-48 text-lg md:text-xl">
-                      We are a passionate team of educators, advocates, and
-                      technology professionals dedicated to bridging the gap in
-                      STEM education for the deaf community. Learn more about
-                      our story and the impact we&apos;ve here making.
-                    </p>
-                    <Link href="/about">
-                      <Button className="mt-4 ml-48">Learn More</Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <section className="py-16 bg-gray-100 rounded-lg" aria-labelledby="about-us-title"> 
+      <div className="container mx-auto px-4 md:px-0">
+        <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20">
+          {/* Image on the right for larger screens */}
+          <div className="w-full md:w-1/2 md:order-last"> 
+            <Image
+              src="/assets/images/abuvic.jpg" // Replace with your actual image
+              alt="Descriptive alt text about the image" 
+              width={500}
+              height={350}
+              className="rounded-lg shadow-md h-[350px] w-[500px] object-cover"
+            />
+          </div>
+
+          <div className="w-full md:w-1/2 text-center md:text-left">
+            <h2 
+              id="about-us-title" 
+              className="text-3xl md:text-4xl font-bold text-gray-800 mb-4"
+            >
+              About Us
+            </h2>
+            <p className="text-gray-600 text-lg md:text-xl mb-6">
+              We are a passionate team of educators, advocates, and technology 
+              professionals dedicated to bridging the gap in STEM education for 
+              the deaf community. 
+            </p>
+            <p className="text-gray-600 text-lg md:text-xl mb-6">
+              Our mission is to empower deaf individuals with the skills and 
+              opportunities to thrive in the ever-evolving world of technology.
+            </p>
+            <Link href="/about">
+              <Button className="mt-4">Learn More</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
 
             <section className="py-16 bg-gray-100">
               <div className="container mx-auto text-center px-4 md:px-0">
