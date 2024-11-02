@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card'; 
 import Link from 'next/link';
 
+import { FaLinkedin, FaTwitter, FaFacebook} from 'react-icons/fa'; // Import icons from react-icons
+
 interface TeamMember {
   name: string;
   role: string;
@@ -12,6 +14,7 @@ interface TeamMember {
   socialLinks?: {
     linkedin?: string;
     twitter?: string;
+    facebook?: string;
     // Add more as needed
   };
 }
@@ -27,8 +30,9 @@ const teamData: TeamMember[] = [
     bio: 'Abubakar is passionate about inclusive edtech program for deaf community',
     imageUrl: '/assets/images/Abubakar.jpg',
     socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/victor-oricha/',
-      twitter: 'https://x.com/victororicha',
+      linkedin: 'https://www.linkedin.com/in/abubakar-mumbu-idris',
+      twitter: 'https://x.com/ELMumbuAbubakar',
+      facebook:'https://www.facebook.com/idrees09'
     },
   },
     {
@@ -38,7 +42,8 @@ const teamData: TeamMember[] = [
     imageUrl: '/assets/images/victor.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/victor-oricha/',
-      twitter: 'https://x.com/victororicha',
+      twitter: 'https://x.com/oricha_victor',
+      facebook:'https://www.facebook.com/victor.emmanuel982'
     },
   },
   // ... more team members
@@ -124,17 +129,24 @@ const TeamPage: React.FC = () => {
 
                 {/* Social Links (Optional) */}
                 {selectedMember.socialLinks && (
-                  <div className="mt-6 flex space-x-4">
-                    {selectedMember.socialLinks.linkedin && (
-                      <Link href={selectedMember.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-500" fill="currentColor" viewBox="0 0 24 24">
-                          {/* LinkedIn icon path */}
-                        </svg>
-                      </Link>
-                    )}
-                    {/* Add more social links as needed */}
-                  </div>
-                )}
+              <div className="mt-6 flex space-x-4">
+                      {selectedMember.socialLinks.linkedin && (
+                        <Link href={selectedMember.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">
+                          <FaLinkedin className="h-6 w-6" /> {/* Use the imported LinkedIn icon */}
+                        </Link>
+                      )}
+                      {selectedMember.socialLinks.twitter && ( 
+                        <Link href={selectedMember.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
+                          <FaTwitter className="h-6 w-6" /> {/* Use the imported Twitter icon */}
+                        </Link>
+                      )}
+                      {selectedMember.socialLinks.facebook && ( 
+                        <Link href={selectedMember.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
+                          <FaFacebook className="h-6 w-6" /> {/* Use the imported Twitter icon */}
+                        </Link>
+                      )}
+                    </div>
+                  )}
               </CardContent>
             </Card>
           </div>

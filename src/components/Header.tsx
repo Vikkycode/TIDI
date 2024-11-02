@@ -18,6 +18,7 @@ import {
   FaTwitter, 
   FaInstagram, 
   FaPhone,
+  FaLinkedin,
   // FaMailBulk 
 } 
   from 'react-icons/fa';
@@ -178,9 +179,9 @@ export default function Header() {
           </Link> */}
           {/* Social Icons */}
           <div className="flex space-x-4">
-            <Link href="#" className="hover:text-blue-500"><FaFacebook /></Link>
-            <Link href="#" className="hover:text-blue-500"><FaTwitter /></Link>
-            <Link href="#" className="hover:text-blue-500"><FaInstagram /></Link>
+            <Link href="https://web.facebook.com/thetidi/" className="hover:text-blue-500"><FaFacebook /></Link>
+            <Link href="https://x.com/the_tidi" className="hover:text-blue-500"><FaTwitter /></Link>
+            <Link href="https://www.linkedin.com/company/tech-inclusion-for-the-deaf-initiative" className="hover:text-blue-500"><FaLinkedin /></Link>
           </div>
         </div>
       <div className="container mx-auto flex items-center justify-between px-4 md:px-0">
