@@ -16,7 +16,6 @@ import { usePathname } from 'next/navigation';
 import { 
   FaFacebook, 
   FaTwitter, 
-  FaInstagram, 
   FaPhone,
   FaLinkedin,
   // FaMailBulk 
