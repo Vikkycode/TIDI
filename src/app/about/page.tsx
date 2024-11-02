@@ -42,18 +42,18 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
               <div>
                 <Image
-                  src="/assets/images/team.jpg"
-                  alt="Students learning in the TIDI tech school"
+                  src="/assets/images/abuvic.jpg"
+                  alt="Victor and Abubakar look smiled in this picture"
                   width={500}
-                  height={350}
-                  className="rounded-lg shadow-md h-[350px] w-[500px] object-cover"
+                  height={550}
+                  className="rounded-lg shadow-md h-[480px] w-[600px] object-cover"
                 />
               </div>
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                   Our Story
                 </h2>
-                <p className="text-gray-600 text-lg md:text-xl">
+                <p className="text-gray-600 text-lg text-justify md:text-xl">
                   Our journey began with a simple but powerful belief:
                   everyone, regardless of hearing ability, deserves equal
                   opportunities in STEM. We are a passionate team of
