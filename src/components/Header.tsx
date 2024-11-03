@@ -165,7 +165,7 @@ export default function Header() {
   
   return (
     <header className="bg-white shadow-md py-4 sticky top-0 z-50">
-      <div className="container  mx-auto flex items-center justify-between px-4 md:px-0 space-x-6 text-sm text-blue-500">
+      <div className="container  mx-auto flex flex-col items-center justify-between px-4 md:flex-row md:px-0 space-x-6 text-sm text-blue-500">
           {/* Phone */}
           <Link href="tel:+2348160000000" className="hover:text-blue-500 flex items-center space-x-10">
           <FaPhone className="h-8 w-8 pr-5" />
