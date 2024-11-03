@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card'; 
 import Link from 'next/link';
@@ -27,9 +27,8 @@ const teamData: TeamMember[] = [
   {
     name: 'Abubakar Idris El-mumbu',
     role: 'Co-Founder & CEO, Tech Inclusion for the Deaf Initiative',
-    bio: `Abubakar Mumbu Idris is a dedicated advocate for disability inclusion and a pioneering leader in accessible technology education. As the co-founder and CEO of Tech Inclusion for the Deaf Initiative (TIDI), he has committed his career to bridging the digital divide for Deaf individuals across Nigeria, providing them with essential tools, skills, and resources to thrive in today’s technology-driven world.
-Abubakar's academic background is in History and International Studies, with certifications in digital skills such as Google Data Analytics. His educational journey has been shaped by overcoming the obstacles faced by Deaf individuals in mainstream learning environments. During his undergraduate years, he and a fellow student struggled to find accessible tech classes or mentors, eventually teaching themselves essential tech skills. This experience inspired him to create TIDI, an organization dedicated to ensuring that others in the Deaf community can access quality tech education without facing the same barriers.
-In addition to his role with TIDI, Abubakar has over four years of experience as a data analyst, a role that complements his passion for empowering Deaf individuals, particularly women and youth, to secure meaningful employment and become community leaders. Driven by the belief that Deaf individuals can achieve anything with the right support, Abubakar’s mission is to create inclusive pathways for Deaf learners, equipping them with skills such as coding, data analysis, and digital literacy to lead in the digital era.
+    bio: `Abubakar Mumbu Idris is an advocate for disability inclusion and a leader in accessible technology education. With a background in History and International Studies and certifications in digital skills, including Google Data Analytics, he focuses on bridging the digital divide for Deaf individuals in Nigeria.
+His experiences in overcoming barriers to tech education inspired him to establish TIDI, ensuring that Deaf community members gain access to quality tech training. With over four years of experience as a data analyst, Abubakar empowers Deaf individuals, particularly women and youth, to achieve meaningful employment and community leadership. His mission is to create inclusive pathways for Deaf learners, equipping them with essential skills for the digital era.
 `,
     imageUrl: '/assets/images/Abubakar.jpg',
     socialLinks: {
@@ -41,7 +40,7 @@ In addition to his role with TIDI, Abubakar has over four years of experience as
     {
     name: 'Victor Oricha',
     role: 'Co-Founder & CTO, Tech Inclusion for the Deaf Initiative',
-    bio: 'Victor is passionate about inclusive edtech program for deaf community',
+    bio: 'Victor Oricha is a dedicated advocate for disability inclusion especially deaf community and a frontend software engineer with accessible te',
     imageUrl: '/assets/images/victor.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/victor-oricha/',
@@ -55,7 +54,8 @@ In addition to his role with TIDI, Abubakar has over four years of experience as
 
 const TeamPage: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-
+  const [showFullBio, setShowFullBio] = useState(false);
+  const modalButtonRef = useRef<HTMLButtonElement>(null); // Ref for the button that opened the modal
   return (
     <section className="bg-white py-16" aria-labelledby="team-section">
       <div className="container mx-auto px-4 md:px-0">
@@ -97,7 +97,11 @@ const TeamPage: React.FC = () => {
         {selectedMember && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-            onClick={() => setSelectedMember(null)} // Close modal on overlay click
+            onClick={(event) => 
+            {if (event.target === event.currentTarget) {
+              setSelectedMember(null);
+            }}
+          }
             aria-labelledby="modal-title"
             role="dialog"
             aria-modal="true"
@@ -116,21 +120,30 @@ const TeamPage: React.FC = () => {
                 src={selectedMember.imageUrl}
                 alt={selectedMember.name}
                 width={400}
-                height={300}
-                className="object-cover h-[300px] w-full rounded-t-lg"
+                height={200}
+                className="object-covers h-[300px] w-full rounded-t-lg"
               />
               <CardContent className="p-6">
-                <CardTitle className="text-2xl font-bold text-gray-800 mb-4">
+                <CardTitle className="text-2xl font-bold text-gray-800 mb-2">
                   {selectedMember.name}
                 </CardTitle>
-                <CardDescription className="text-gray-700 mb-4">
+                <CardDescription className="text-gray-700 mb-2">
                   {selectedMember.role}
                 </CardDescription>
-                <div className="overflow-y-auto flex-grow"> {/* Added scrollable container */}
-                  <p className="text-gray-600">
-                  {selectedMember.bio}
-                  </p>
-        </div>
+                <div className="mb-2"> {/* Added margin-bottom for spacing */}
+                <p className="text-gray-600 w-full">
+                  {showFullBio ? selectedMember.bio : `${selectedMember.bio.substring(0, 150)}...`}
+                </p>
+                <button 
+                  className="text-blue-500 font-medium hover:underline"
+                  onClick={(event) => {
+                    event.stopPropagation(); // Prevent event bubbling
+                    setShowFullBio(!showFullBio);
+                  }}
+                >
+                  {showFullBio ? 'Read Less' : 'Read More'}
+                </button>
+              </div>
 
                 {/* Social Links (Optional) */}
                 {selectedMember.socialLinks && (
