@@ -1,5 +1,5 @@
 'use client'
-import React, { useState,useRef } from 'react';
+import React, { useState} from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardTitle, CardDescription } from '@/components/ui/card'; 
 import Link from 'next/link';
@@ -27,9 +27,18 @@ const teamData: TeamMember[] = [
   {
     name: 'Abubakar Idris El-mumbu',
     role: 'Co-Founder & CEO, Tech Inclusion for the Deaf Initiative',
-    bio: `Abubakar Mumbu Idris is an advocate for disability inclusion and a leader in accessible technology education. With a background in History and International Studies and certifications in digital skills, including Google Data Analytics, he focuses on bridging the digital divide for Deaf individuals in Nigeria.
-His experiences in overcoming barriers to tech education inspired him to establish TIDI, ensuring that Deaf community members gain access to quality tech training. With over four years of experience as a data analyst, Abubakar empowers Deaf individuals, particularly women and youth, to achieve meaningful employment and community leadership. His mission is to create inclusive pathways for Deaf learners, equipping them with essential skills for the digital era.
-`,
+    bio: `Abubakar Mumbu Idris is an advocate for disability inclusion 
+    and a leader in accessible technology education. With a background 
+    in History and International Studies and certifications in digital 
+    skills, including Google Data Analytics, he focuses on bridging the 
+    digital divide for Deaf individuals in Nigeria.His experiences in 
+    overcoming barriers to tech education inspired him to establish TIDI,
+    ensuring that Deaf community members gain access to quality tech training.
+    With over four years of experience as a data analyst, Abubakar empowers
+    Deaf individuals, particularly women and youth, to achieve meaningful
+    employment and community leadership. His mission is to create inclusive
+    pathways for Deaf learners, equipping them with essential skills for the
+    digital era.`,
     imageUrl: '/assets/images/Abubakar.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/abubakar-mumbu-idris',
@@ -55,7 +64,7 @@ His experiences in overcoming barriers to tech education inspired him to establi
 const TeamPage: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
   const [showFullBio, setShowFullBio] = useState(false);
-  const modalButtonRef = useRef<HTMLButtonElement>(null); // Ref for the button that opened the modal
+  // const modalButtonRef = useRef<HTMLButtonElement>(null); // Ref for the button that opened the modal
   return (
     <section className="bg-white py-16" aria-labelledby="team-section">
       <div className="container mx-auto px-4 md:px-0">
