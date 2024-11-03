@@ -18,7 +18,7 @@ import {
   FaTwitter, 
   FaPhone,
   FaLinkedin,
-  // FaMailBulk 
+  FaMailBulk 
 } 
   from 'react-icons/fa';
 import { IoMdArrowDropdown } from 'react-icons/io' 
@@ -172,10 +172,10 @@ export default function Header() {
             <span className="sr-only">Phone:</span> +2347036708999
           </Link>
           {/* Email */}
-          {/* <Link href="mailto:info@tidi.org" className="hover:text-blue-500 flex items-center space-x-10">
+          <Link href="mailto:techinclusion112@gmail.com" className="hover:text-blue-500 flex items-center space-x-10">
           <FaMailBulk className="h-8 w-8 pr-5" />
-            <span className="sr-only">Email:</span> info@tidi.org
-          </Link> */}
+            <span className="sr-only">Email:</span>techinclusion112@gmail.com 
+          </Link>
           {/* Social Icons */}
           <div className="flex space-x-4">
             <Link href="https://web.facebook.com/thetidi/" className="hover:text-blue-500"><FaFacebook /></Link>
@@ -185,7 +185,7 @@ export default function Header() {
         </div>
       <div className="container mx-auto flex items-center justify-between px-4 md:px-0">
         <Link href="/" className="text-2xl font-bold text-gray-800">
-          TIDI
+          TiDi
         </Link>
 
         {/* Desktop Navigation */}
