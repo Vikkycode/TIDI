@@ -30,7 +30,7 @@ import Contact from '@/components/contact';
 const galleryImages = [
   {
     src: '/assets/images/abuvic.jpg',
-    alt: 'Image 1 Description',
+    alt: 'Deaf parnters',
     caption: 'Tech partners',
   },
   {
@@ -63,25 +63,25 @@ interface HeroSlide {
 
 const slides: HeroSlide[] = [
   {
-    title: 'Slide 1 Title',
-    subtitle: 'Slide 1 Subtitle',
+    title: 'Deaf tech educators',
+    subtitle: 'deaf team',
     imageUrl: '/assets/images/abuvic.jpg',
-    imageAlt: 'Slide 1 Image',
-    buttonLink: '/about',
+    imageAlt: 'deaf parnters',
+    buttonLink: '/team/key-staff',
   },
   {
-      title: 'Slide 2 Title',
-      subtitle: 'Slide 2 Subtitle',
-      imageUrl: '/assets/images/Abubakar.jpg',
-      imageAlt: 'Slide 2 Image',
-      buttonLink: '/about',
+      title: 'Deaf tech empowerment',
+      subtitle: 'We empowered them with tech skills',
+      imageUrl: '/assets/images/program.jpg',
+      imageAlt: 'deaf community',
+      buttonLink: '/gallery',
     },
     {
-      title: 'Slide 3 Title',
-      subtitle: 'Slide 3 Subtitle',
-      imageUrl: '/assets/images/victor.jpg',
-      imageAlt: 'Slide 3 Image',
-      buttonLink: '/about',
+      title: 'Hand-on Workshop',
+      subtitle: 'deaf community learn computer operations',
+      imageUrl: '/assets/images/STEM.jpg',
+      imageAlt: 'hand-on practical workshop',
+      buttonLink: '/gallery',
     },
   // Add more slides...
 ];
