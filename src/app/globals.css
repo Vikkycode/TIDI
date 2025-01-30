@@ -59,11 +59,20 @@
   }
 }
 
+:root {
+  font-family: 'Inter', sans-serif; /* Inter is a good default, but consider others like 'Roboto', 'Poppins', 'Lato', etc. */
+  font-size: 16px; /* This is a standard base font size */
+}
+
+
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased; /* Improves rendering on macOS */
+    -moz-osx-font-smoothing: grayscale; 
   }
 }
