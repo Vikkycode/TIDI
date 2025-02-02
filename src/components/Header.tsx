@@ -7,15 +7,15 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { 
-  FaFacebook, 
-  FaTwitter, 
-  FaInstagram, 
-  FaPhone,
-  FaLinkedin,
-  FaMailBulk,
+  // FaFacebook, 
+  // FaTwitter, 
+  // FaInstagram, 
+  // FaPhone,
+  // FaLinkedin,
+  // FaMailBulk,
   FaChevronDown
 } from 'react-icons/fa';
 
@@ -73,7 +73,7 @@ const navLinks: NavLink[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
-const renderNavLink = (link: NavLink, level: number = 0) => {
+const renderNavLink: React.FC<NavLink> = (link: NavLink, level: number = 0) => {
   const isActive = usePathname() === link.href || (link.subLinks && link.subLinks.some(sub => sub.href === usePathname()));
   const isDropdown = !!link.subLinks;
 

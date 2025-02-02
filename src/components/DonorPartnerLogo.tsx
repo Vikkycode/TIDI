@@ -1,3 +1,4 @@
+import React from 'react'
 // components/DonorPartnerSection.tsx
 import Image from 'next/image';
 import { motion } from 'framer-motion';

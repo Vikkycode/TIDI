@@ -1,6 +1,7 @@
-import Image from 'next/image';
+import React from 'react'
+// import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
+// import Link from 'next/link';
 // import DonorPartnerLogo, { DonorPartnerSectionProps } from '@/components/DonorPartnerLogo';
 import DonorPartnerLogo from '@/components/DonorPartnerLogo'
 interface DonorPartner {

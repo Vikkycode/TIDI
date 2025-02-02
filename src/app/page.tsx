@@ -1,7 +1,7 @@
 'use client';
-import { Metadata } from 'next';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+// import { Metadata } from 'next';
+import React from 'react';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -26,13 +26,13 @@ import { DonorPartnerSection } from '@/components/DonorParnterSection';
 import { ImpactCard } from '@/components/ImpactCard';
 import thematicAreas from '@/lib/data';
 import ThematicAreaCard from '@/components/ThematicAreaCard';
-import Contact from '@/components/contact';
+// import Contact from '@/components/contact';
 import { motion } from 'framer-motion'
 
-const metadata: Metadata = {
-  title: 'Tech Inclusion Deaf Initiative',
-  description: 'Empowering the Deaf community through STEM education.',
-};
+// const metadata: Metadata = {
+//   title: 'Tech Inclusion Deaf Initiative',
+//   description: 'Empowering the Deaf community through STEM education.',
+// };
 
 const galleryImages = [
   {
@@ -117,7 +117,7 @@ export default function HomePage() {
                       Empowering Deaf Individuals Through Tech
                     </h2>
                     <p className="text-gray-600 text-lg md:text-xl mb-6">
-                      At TIDI, we're passionate about fostering inclusivity and opportunity within the deaf community. We believe technology can be a powerful tool for empowerment, and we're dedicated to equipping deaf individuals with the skills they need to thrive in the digital world.
+                      At TIDI, we are passionate about fostering inclusivity and opportunity within the deaf community. We believe technology can be a powerful tool for empowerment, and we are dedicated to equipping deaf individuals with the skills they need to thrive in the digital world.
                     </p>
                     <Link href="/about">
                       <Button className="mt-4">Learn Our Story</Button>

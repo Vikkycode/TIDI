@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -71,15 +71,15 @@ const HeroCarousel: React.FC = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
-  };
+  // const cardVariants = {
+  //   hidden: { opacity: 0, scale: 0.95 },
+  //   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
+  // };
 
-  const iconVariants = {
-    hover: { rotate: 360 },
-    tap: { scale: 0.95 }
-  };
+  // const iconVariants = {
+  //   hover: { rotate: 360 },
+  //   tap: { scale: 0.95 }
+  // };
 
 
   return (
