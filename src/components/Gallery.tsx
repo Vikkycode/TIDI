@@ -1,61 +1,81 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import {Card} from '@/components/ui/card'; // Assuming you have a Card component from Shadcn UI
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Card } from '@/components/ui/card';
 import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogTrigger, DialogClose } from '@/components/ui/dialog'
+
+
 interface GalleryImage {
   src: string;
   alt: string;
+  category: string; // Add a category for tabs
 }
 
 interface GalleryProps {
   images: GalleryImage[];
+  categories: string[]; // Array of unique categories
 }
 
-const Gallery: React.FC<GalleryProps> = ({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(images[0]);
+const Gallery: React.FC<GalleryProps> = ({ images, categories }) => {
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   return (
-    <section className="bg-white py-16" aria-labelledby="gallery-section">
+    <section className="py-16" aria-labelledby="gallery-section">
       <div className="container mx-auto px-4 md:px-0">
-        <h2 id="gallery-section" className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
+        <h2 id="gallery-section" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">
           Our Gallery
         </h2>
 
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Main Image */}
-          <Card className="w-full md:w-2/3 rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              width={800} // Adjust as needed
-              height={500} // Adjust as needed
-              className="object-cover w-full h-full rounded-t-lg"
-            />
-            {/* You can add CardHeader, CardContent, etc. here if needed */}
-          </Card>
-
-          {/* Thumbnails */}
-          <div className="w-full md:w-1/3 flex flex-col gap-4">
-            {images.map((image, index) => (
-              <Button
-                key={index}
-                onClick={() => setSelectedImage(image)}
-                className={`relative overflow-hidden transition-transform duration-300 ease-in-out 
-                  ${selectedImage.src === image.src ? 'ring-2 ring-blue-500 transform scale-105' : 'hover:scale-105'}
-                `}
-              >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={200} // Adjust as needed
-                  height={100} // Adjust as needed
-                  className="object-cover w-full h-[200px] rounded-lg"
-                />
-              </Button>
+        <Tabs defaultValue={categories[0]} className="w-full">
+          <TabsList className="justify-center flex items-center">
+            {categories?.map((category) => (
+              <TabsTrigger value={category} key={category} className='bg-white'>
+                <Button 
+                className={`bg-white border-2 border-blue-500 text-blue-500 font-bold py-3 px-6 rounded-full hover:bg-blue-500 hover:text-white  transition duration-300`}>
+                  {category}
+                  </Button>
+              </TabsTrigger>
             ))}
-          </div>
-        </div>
+          </TabsList>
+          {categories?.map((category) => (
+            <TabsContent value={category} key={category}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {images
+                  .filter((image) => image.category === category)
+                  .map((image) => (
+                    <Dialog key={image.src}>
+                      <DialogTrigger asChild>
+                        <Card className="cursor-pointer transform transition duration-300 ease-in-out hover:scale-105" onClick={() => setSelectedImage(image)}>
+                          <Image
+                            src={image.src}
+                            alt={image.alt}
+                            width={400}
+                            height={300}
+                            className="object-cover w-full h-[200px] rounded-lg"
+                          />
+                        </Card>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-[90vw] md:max-w-[60vw] lg:max-w-[40vw]">
+                        <DialogClose className="text-xl text-blue-600 hover:text-blue-900 absolute top-2 right-2">
+                         
+                        </DialogClose>
+                        <Image
+                          src={image.src}
+                          alt={image.alt}
+                          width={800}
+                          height={600}
+                          className="object-contain w-full h-auto max-h-[80vh]"
+                        />
+                        <p className="text-center mt-4 text-gray-600">{image.alt}</p>
+                      </DialogContent>
+                    </Dialog>
+                  ))}
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );

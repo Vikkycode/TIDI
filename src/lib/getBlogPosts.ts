@@ -1,5 +1,5 @@
 
-export const getBlogPosts = [
+export const getBlogPost = [
     {
       slug: 'deaf-tech-empowerment',
       title: 'Empowering Deaf Individuals Through Technology',

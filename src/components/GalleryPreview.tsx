@@ -17,7 +17,7 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({ images, galleryLink }) 
   return (
     <section className="py-16 bg-white" aria-labelledby="gallery-preview-title">
       <div className="container mx-auto text-center px-4 md:px-0">
-        <h2 id="gallery-preview-title" className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+        <h2 id="gallery-preview-title" className="text-3xl md:text-4xl font-bold text-blue-500 mb-8">
           Our Gallery
         </h2>
 

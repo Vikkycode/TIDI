@@ -18,6 +18,7 @@ import {
   // FaMailBulk,
   FaChevronDown
 } from 'react-icons/fa';
+import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 
 interface NavLink {
@@ -62,14 +63,14 @@ const navLinks: NavLink[] = [
       { label: 'Services', href: '/services' },
     ]
   },  
-  { label: 'Blog', href: '/blog' },
-  { label: 'Events', href: '/events' },
+  // { label: 'Blog', href: '/blog' },
+  // { label: 'Events', href: '/events' },
   // { label: 'Gallery', href: '/gallery' },
-  { 
-    label: 'Donate', 
-    href: '/donate', 
-    subLinks: [{ label: 'Flutterwave', href: '/donate/flutterwave' }] 
-  },
+  // { 
+  //   label: 'Donate', 
+  //   href: '/donate', 
+  //   subLinks: [{ label: 'Flutterwave', href: '/donate/flutterwave' }] 
+  // },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -82,21 +83,31 @@ const renderNavLink: React.FC<NavLink> = (link: NavLink, level: number = 0) => {
       {isDropdown ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-             <div  className={`flex items-center space-x-2 cursor-pointer ${isActive ? 'text-blue-500' : 'text-gray-600'} hover:text-blue-500 transition duration-300`}>
-                <Link href={level === 0 ? link.href : ""} >{link.label}</Link>
-              {level === 0 && <FaChevronDown className="h-4 w-4" />}
-             </div>
+          <button className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none
+              ${isActive ? 'text-blue-500' : 'text-gray-700'} 
+              hover:text-blue-500 transition duration-300`}>
+               {link.label} {level === 0 && <FaChevronDown className="h-4 w-4 ml-1" />}
+             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white shadow-md rounded-md p-2 border border-gray-200">
-            {link.subLinks?.map(subLink => renderNavLink(subLink, level + 1))}
+          <DropdownMenuContent className="bg-white shadow-md rounded-md p-2 border border-gray-200 mt-2">
+            {link.subLinks?.map(subLink => 
+            <DropdownMenuItem key={subLink.label} asChild>
+              <Link href={subLink.href} className='block w-full px-4 py-2 text-gray-700 hover:text-blue-500'>
+            
+              {renderNavLink(subLink, level + 1)}
+              </Link>
+            </DropdownMenuItem>
+            )}
+            
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
 
-          <Link href={link.href}
-              className={`block px-4 py-2 ${isActive ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-600'} hover:text-blue-500 transition duration-300`}>
-            {link.label}
-          </Link>
+        <Link href={link.href} className={`font-medium px-4 py-2  focus:outline-none
+          ${isActive ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-700'}
+          hover:text-blue-500 transition duration-300`}>
+        {link.label}
+      </Link>
       )}
     </div>
   );

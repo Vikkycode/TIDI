@@ -17,21 +17,21 @@ const slides: HeroSlide[] = [
   {
     title: 'Deaf tech educators',
     subtitle: 'deaf team',
-    imageUrl: '/assets/images/abuvic.jpg',
+    imageUrl: '/assets/images/image7.jpg',
     imageAlt: 'deaf parnters',
     buttonLink: '/team/key-staff',
   },
   {
     title: 'Deaf tech empowerment',
     subtitle: 'We empowered them with tech skills',
-    imageUrl: '/assets/images/program.jpg',
+    imageUrl: '/assets/images/image8.jpg',
     imageAlt: 'deaf community',
     buttonLink: '/gallery',
   },
   {
     title: 'Hand-on Workshop',
     subtitle: 'deaf community learn computer operations',
-    imageUrl: '/assets/images/STEM.jpg',
+    imageUrl: '/assets/images/image10.jpg',
     imageAlt: 'hand-on practical workshop',
     buttonLink: '/gallery',
   },
@@ -67,8 +67,8 @@ const HeroCarousel: React.FC = () => {
 
 
   const heroVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1, type: "spring", ease: "easeOut" } }
   };
 
   // const cardVariants = {
@@ -93,9 +93,10 @@ const HeroCarousel: React.FC = () => {
         <Image
           src={currentSlide.imageUrl}
           alt={currentSlide.imageAlt || 'Hero Banner Image'}
-          layout="fill"
+          layout='fill'
           objectFit="cover"
-          className="absolute w-full h-full object-contain inset-0 z-0"
+          priority={true}
+          className="absolute h-screen w-full object-cover inset-0 z-0"
         />
         <button
           className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white hover:text-blue-300 focus:outline-none"
@@ -130,7 +131,7 @@ const HeroCarousel: React.FC = () => {
           ))}
         </div>
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="z-10 text-center text-white px-4 md:px-0">
+        {/* <div className="z-10 text-center text-white px-4 md:px-0">
           <motion.h2
             className="text-4xl md:text-6xl lg:text-7xl font-poppins font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg"
             variants={heroVariants}
@@ -150,7 +151,7 @@ const HeroCarousel: React.FC = () => {
               </Button>
             </Link>
           )}
-        </div>
+        </div> */}
       </motion.div>
     </section>
   );

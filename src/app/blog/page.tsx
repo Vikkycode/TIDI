@@ -1,9 +1,9 @@
 import { BlogCard } from '@/components/BlogCard';
-import { getBlogPosts } from '@/lib/getBlogPosts'
+import {getBlogPost}  from '@/lib/getBlogPosts'
 
 
 export default async function BlogIndexPage() {
-  const blogPosts = await getBlogPosts();
+  const blogPosts = await getBlogPost();
 
  return ( 
     <section className="py-16" aria-labelledby="blog-section-title">
