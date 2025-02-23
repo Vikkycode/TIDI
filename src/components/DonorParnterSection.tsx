@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import DonorPartnerLogo from './DonorPartnerLogo';
+// import PartnerCard from './ParnterCard';
 
-interface DonorPartner {
+export interface DonorPartner {
   name: string;
   logo: string;
   link?: string;
@@ -32,6 +33,8 @@ export const DonorPartnerSection: React.FC<DonorPartnerSectionProps> = ({ partne
         <h2 id="donor-partner-section-title" className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
           Our Partners
         </h2>
+
+       {/* <PartnerCard partners={extendedPartners} /> */}
 
         <motion.div
           className="flex overflow-hidden" // Use overflow-hidden for smooth transitions
