@@ -1,30 +1,11 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-// import { Button } from '@/components/ui/button';
-// import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ImpactCard } from '@/components/ImpactCard';
 import { DonorPartnerSection } from '@/components/DonorParnterSection';
-// import { PartnerCarousel } from '@/components/ParnterCard';
 
-
-interface AboutUsProps {
-  missionStatement: string;
-  visionStatement: string;
-  impactData: {
-    title: string;
-    number: number;
-    description: string;
-    icon?: React.ReactNode;
-  }[];
-  donorPartners: { name: string; logo: string, link?:string }[];
-  partners: { name: string; logo: string, link?:string }[];
-
-}
-
-
-const AboutUs: React.FC<AboutUsProps> = () => {
+const AboutUs: React.FC = () => {
   const missionStatement = "Our mission is to empower Deaf individuals in Nigeria by fostering inclusive tech education and employment opportunities.";
   const visionStatement = "We envision a future where Deaf individuals are leading innovators and problem-solvers in the tech world.";
   const impactData = [
@@ -39,12 +20,6 @@ const AboutUs: React.FC<AboutUsProps> = () => {
     // ... more donor partners
   ];
 
-  // const partners = [
-  //   { name: "NNAD", logo: "/assets/images/nnad.png", link: "" },
-  //   { name: "NANDS", logo: "/assets/images/nands.png", link: "" },
-  //   { name: "AAD", logo: "/assets/images/AAD.png", link: "" }
-  //   // ... more partners
-  // ];
 return (
   <div className="bg-gray-50 min-h-screen font-sans">
     <section className="relative bg-gradient-to-r from-purple-500 to-pink-500 py-20 text-white">
