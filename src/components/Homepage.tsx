@@ -134,7 +134,6 @@ interface HomePageProps {
   
           <GalleryPreview
             images={galleryImages}
-            categories={[...new Set(galleryImages.map(image => image.category))]} // Calculate categories dynamically
             galleryLink="/gallery"
           />
   
