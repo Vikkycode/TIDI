@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'; // Example social icons
+import { FaFacebook, FaTwitter, FaInstagram,FaLinkedin } from 'react-icons/fa'; // Example social icons
 
 export default function Footer() {
   return (
@@ -22,9 +22,10 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
           <div className="flex space-x-4 justify-center md:justify-start">
-            <a href="#" className="text-gray-300 hover:text-white"><FaFacebook size={20} /></a>
-            <a href="#" className="text-gray-300 hover:text-white"><FaTwitter size={20} /></a>
-            <a href="#" className="text-gray-300 hover:text-white"><FaInstagram size={20} /></a>
+            <Link href="#" className="text-gray-300 hover:text-white"><FaFacebook size={20} /></Link>
+            <Link href="#" className="text-gray-300 hover:text-white"><FaTwitter size={20} /></Link>
+            <Link href="#" className="text-gray-300 hover:text-white"><FaInstagram size={20} /></Link>
+            <Link href="" className="text-gray-300 hover:text-white"><FaLinkedin size={20} /></Link>
           </div>
         </div>
       </div>
