@@ -60,7 +60,7 @@ const galleryImages: { src: string; alt: string; category: string }[] = [
     },
   ];
   
-  const categories = [...new Set(galleryImages.map(img => img.category))];
+  const categories = Array.from(new Set(galleryImages.map(img => img.category))); // Use Array.from
   const GalleryPage: React.FC = () => {
     return (
       <div>
