@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardTitle, CardDescription, CardHeader } from '@/components/ui/card';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHandshake, FaHandsHelping, FaWheelchair, FaLightbulb, FaUsers }  from 'react-icons/fa';
-import { cn } from '@/lib/utils';
+// import { cn } from '@/lib/utils';
 
 interface ValueItem {
   title: string;
