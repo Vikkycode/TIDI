@@ -163,7 +163,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
+          <div className="md:hidden fixed top-0 left-0 w-full h-[500px] bg-black/50 backdrop-blur-sm z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
             <div className="p-4"> {/* Added padding */}
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
