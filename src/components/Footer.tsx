@@ -3,11 +3,11 @@ import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'; // Example 
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-8 mt-12">
+    <footer className="bg-blue-600 text-white py-8 mt-12">
       <div className="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
           <h3 className="text-xl font-bold mb-4">Tech Inclusion Deaf Initiative</h3>
-          <p className="text-gray-400">
+          <p className="text-white">
             Empowering the Deaf community through STEM education.
           </p>
         </div>
@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="text-center mt-8 text-gray-500">
+      <div className="text-center mt-8 text-white">
         &copy; {new Date().getFullYear()} Tech Inclusion Deaf Initiative. All rights reserved.
       </div>
     </footer>

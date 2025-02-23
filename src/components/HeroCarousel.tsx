@@ -15,22 +15,22 @@ interface HeroSlide {
 }
 const slides: HeroSlide[] = [
   {
-    title: 'Deaf tech educators',
-    subtitle: 'deaf team',
+    title: 'Deaf Tech Innovators',
+    subtitle: 'Empowering the Deaf community through tech skills and opportunities',
     imageUrl: '/assets/images/image7.jpg',
     imageAlt: 'deaf parnters',
     buttonLink: '/team/key-staff',
   },
   {
-    title: 'Deaf tech empowerment',
-    subtitle: 'We empowered them with tech skills',
+    title: 'Tech Inclusion for All',
+    subtitle: 'Building a vibrant tech community, empowering Deaf individuals',
     imageUrl: '/assets/images/image8.jpg',
     imageAlt: 'deaf community',
     buttonLink: '/gallery',
   },
   {
-    title: 'Hand-on Workshop',
-    subtitle: 'deaf community learn computer operations',
+    title: 'Shaping the Deaf Digital World',
+    subtitle: 'Hands-on tech training and development for the Deaf community',
     imageUrl: '/assets/images/image10.jpg',
     imageAlt: 'hand-on practical workshop',
     buttonLink: '/gallery',
@@ -130,28 +130,28 @@ const HeroCarousel: React.FC = () => {
             ></button>
           ))}
         </div>
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        {/* <div className="z-10 text-center text-white px-4 md:px-0">
+        <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
+        <div className="z-10 text-center text-white px-4 mt-40 md:mt-40 lg:mt-56 md:px-0">
           <motion.h2
-            className="text-4xl md:text-6xl lg:text-7xl font-poppins font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg"
+            className="text-4xl md:text-6xl lg:text-7xl font-poppins font-bold mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg"
             variants={heroVariants}
           >
 
             {currentSlide.title}
           </motion.h2>
           {currentSlide.subtitle && (
-            <p className="text-lg md:text-xl mb-8 drop-shadow-md">
+            <p className="font- text-lg md:text-xl mb-8 drop-shadow-md">
               {currentSlide.subtitle}
             </p>
           )}
           {currentSlide.buttonLink && (
             <Link href={currentSlide.buttonLink}>
-              <Button className="bg-white text-blue-500 font-bold py-3 px-6 rounded-full hover:bg-gray-100 transition duration-300">
+              <Button className="bg-white font-mono text-blue-500 font-bold py-3 px-6 rounded-full hover:bg-transparent hover:text-white hover:border-2 border-blue-500 transition duration-300">
                 {currentSlide.buttonText || 'Learn More'}
               </Button>
             </Link>
           )}
-        </div> */}
+        </div>
       </motion.div>
     </section>
   );

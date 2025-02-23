@@ -7,15 +7,9 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { 
-  // FaFacebook, 
-  // FaTwitter, 
-  // FaInstagram, 
-  // FaPhone,
-  // FaLinkedin,
-  // FaMailBulk,
+import {
   FaChevronDown
 } from 'react-icons/fa';
 import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
@@ -29,85 +23,84 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
-  { 
-    label: 'Who We Are', 
+  {
+    label: 'Who We Are',
     href: '/who-we-are',
     subLinks: [
       { label: 'About', href: '/about' },
-      { label: 'Team', href: '/team', subLinks: [
-        { label: 'Key Staff', href: '/team/key-staff' },
-        { label: 'State Champions', href: '/team/state-champions' },
-      ]},
+      {
+        label: 'Team', href: '/team', subLinks: [
+          { label: 'Key Staff', href: '/team/key-staff' },
+          { label: 'State Champions', href: '/team/state-champions' },
+        ]
+      },
     ]
   },
-  { 
-    label: 'Our Purpose', 
+  {
+    label: 'Our Purpose',
     href: '/our-purpose',
     subLinks: [
       { label: 'Mission', href: '/purpose/mission' },
       { label: 'Vision', href: '/purpose/vision' },
     ]
   },
-  { 
-    label: 'Guiding Principles', 
+  {
+    label: 'Guiding Principles',
     href: '/guiding-principles',
     subLinks: [
       { label: 'Core Values', href: '/principle/values' },
     ]
   },
-  { 
-    label: 'What We Do', 
+
+  {
+    label: 'What We Do',
     href: '/what-we-do',
     subLinks: [
       { label: 'Key Programs', href: '/programs' },
       { label: 'Services', href: '/services' },
     ]
-  },  
-  // { label: 'Blog', href: '/blog' },
-  // { label: 'Events', href: '/events' },
-  // { label: 'Gallery', href: '/gallery' },
-  // { 
-  //   label: 'Donate', 
-  //   href: '/donate', 
-  //   subLinks: [{ label: 'Flutterwave', href: '/donate/flutterwave' }] 
-  // },
+  },
   { label: 'Contact', href: '/contact' },
 ];
 
-const renderNavLink: React.FC<NavLink> = (link: NavLink, level: number = 0) => {
-  const isActive = usePathname() === link.href || (link.subLinks && link.subLinks.some(sub => sub.href === usePathname()));
-  const isDropdown = !!link.subLinks;
+interface RenderNavLinkProps extends NavLink {
+  pathname: string; // Add pathname as a prop
+  level?: number;
+}
+
+const renderNavLink: React.FC<RenderNavLinkProps> = ({pathname, label, href, subLinks, level = 0 }) => {
+  const isActive = pathname === href || (subLinks && subLinks.some(sub => sub.href === pathname));
+  const isDropdown = !!subLinks;
 
   return (
-    <div key={link.label} className="relative">
+    <div key={label} className="relative">
       {isDropdown ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-          <button className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none
-              ${isActive ? 'text-blue-500' : 'text-gray-700'} 
+            <button className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none
+              ${isActive ? 'text-blue-500' : 'text-white'} 
               hover:text-blue-500 transition duration-300`}>
-               {link.label} {level === 0 && <FaChevronDown className="h-4 w-4 ml-1" />}
-             </button>
+              {label} {level === 0 && <FaChevronDown className="h-4 w-4 ml-1" />}
+            </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-white shadow-md rounded-md p-2 border border-gray-200 mt-2">
-            {link.subLinks?.map(subLink => 
-            <DropdownMenuItem key={subLink.label} asChild>
-              <Link href={subLink.href} className='block w-full px-4 py-2 text-gray-700 hover:text-blue-500'>
-            
-              {renderNavLink(subLink, level + 1)}
-              </Link>
-            </DropdownMenuItem>
+          <DropdownMenuContent className="bg-black/50 backdrop-blur-sm shadow-md rounded-md p-2 border border-gray-200 mt-2">
+            {subLinks?.map(subLink =>
+              <DropdownMenuItem key={subLink.label} asChild>
+                <Link href={subLink.href} className='block w-full px-4 py-2 text-white hover:text-blue-500'>
+                  {renderNavLink({pathname, ...subLink, level: level + 1})}
+                </Link>
+              </DropdownMenuItem>
             )}
-            
+
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
 
-        <Link href={link.href} className={`font-medium px-4 py-2  focus:outline-none
-          ${isActive ? 'text-blue-500 border-b-2 border-blue-500' : 'text-gray-700'}
+        <Link href={href} className={`font-medium font-poppins px-4 py-2  focus:outline-none
+          ${isActive ? 'text-blue-500 border-b-2 border-blue-500' : 'text-white'}
           hover:text-blue-500 transition duration-300`}>
-        {link.label}
-      </Link>
+          {label}
+        </Link>
       )}
     </div>
   );
@@ -117,48 +110,47 @@ const renderNavLink: React.FC<NavLink> = (link: NavLink, level: number = 0) => {
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname(); //usePathname is now called here
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="bg-white shadow-md py-2 sticky top-0 z-50">
-       {/* <div className="container mx-auto flex flex-col items-center justify-between px-4 md:flex-row md:px-0 space-x-6 text-sm text-blue-500">
-        
-          <Link href="tel:+2348160000000" className="hover:text-blue-500 flex items-center space-x-2">
-            <FaPhone className="h-5 w-5 mr-1" />
-            <span className="sr-only">Phone:</span> +234 703 670 8999
-          </Link>
-          
-          <Link href="mailto:techinclusion112@gmail.com" className="hover:text-blue-500 flex items-center space-x-2">
-            <FaMailBulk className="h-5 w-5 mr-1" />
-            <span className="sr-only">Email:</span>techinclusion112@gmail.com 
-          </Link>
-        
-          <div className="flex space-x-4">
-            <Link href="https://web.facebook.com/thetidi/" className="hover:text-blue-500" aria-label="Facebook"><FaFacebook className="h-5 w-5" /></Link>
-            <Link href="https://x.com/the_tidi" className="hover:text-blue-500" aria-label="Twitter/X"><FaTwitter className="h-5 w-5" /></Link>
-            <Link href="https://www.linkedin.com/company/tech-inclusion-for-the-deaf-initiative" className="hover:text-blue-500" aria-label="LinkedIn"><FaLinkedin className="h-5 w-5" /></Link>
-            <Link href="https://www.instagram.com/techinclusiondeafinitiative" className="hover:text-blue-500" aria-label="Instagram"><FaInstagram className="h-5 w-5"/></Link>
-          </div>
-        </div> */}
+    <header className={` ${isScrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'} fixed w-full py-2 top-0 z-50 transition-colors duration-300`}> {/* Transparent Header */}
+
       <div className="container mx-auto flex items-center justify-between px-4 mt-2 md:px-0"> {/* Added margin-top */}
         <Link href="/" aria-label="Home">
-           {/* TIDI Logo or Name */}
-           <Image
+          {/* TIDI Logo or Name */}
+          <Image
             src="/assets/images/TIDI logo.png"  // Replace with the actual path to your logo image
             alt="TIDI Logo"
             width={70}
             height={70}
-          />  
+          />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map(link => renderNavLink(link))}
+          {navLinks.map(link => renderNavLink({...link, pathname}))}
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-800 hover:text-blue-500 focus:outline-none"
+          className="md:hidden text-white hover:text-blue-500 focus:outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Mobile Menu"
         >
@@ -171,17 +163,17 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden fixed top-0 left-0 w-full h-full bg-white z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
+          <div className="md:hidden fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
             <div className="p-4"> {/* Added padding */}
-              <button 
-                onClick={() => setIsMobileMenuOpen(false)} 
-                className="text-gray-800 hover:text-blue-500 float-right focus:outline-none" 
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-white hover:text-blue-500 float-right focus:outline-none"
                 aria-label="Close Mobile Menu"
               >
                 <XIcon className="h-6 w-6" />
               </button>
               <nav className="flex flex-col space-y-4 mt-8"> {/* Added margin-top */}
-                {navLinks.map(link => renderNavLink(link))}
+                {navLinks.map(link => renderNavLink({...link,pathname}))}
               </nav>
             </div>
           </div>

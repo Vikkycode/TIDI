@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
@@ -19,7 +19,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, categories }) => {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  //Remove the state selectedImage
 
   return (
     <section className="py-16" aria-labelledby="gallery-section">
@@ -47,7 +47,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, categories }) => {
                   .map((image) => (
                     <Dialog key={image.src}>
                       <DialogTrigger asChild>
-                        <Card className="cursor-pointer transform transition duration-300 ease-in-out hover:scale-105" onClick={() => setSelectedImage(image)}>
+                        <Card className="cursor-pointer transform transition duration-300 ease-in-out hover:scale-105">
                           <Image
                             src={image.src}
                             alt={image.alt}

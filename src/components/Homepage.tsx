@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
@@ -46,7 +46,7 @@ interface HomePageProps {
             <div className="container mx-auto px-4 md:px-0">
               <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
                 <div className="w-full text-center md:text-left"> {/* Text Content */}
-                  <h2 id="about-us-title" className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                  <h2 id="about-us-title" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">
                     Empowering Deaf Individuals Through Tech
                   </h2>
                   <p className="text-gray-600 text-lg md:text-xl mb-6">
@@ -64,7 +64,7 @@ interface HomePageProps {
           
               <section className="py-16 bg-gray-100">
                 <div className="container mx-auto text-center px-4 md:px-0">
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+                  <h2 className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">
                     Our Values
                   </h2>
   
@@ -108,7 +108,7 @@ interface HomePageProps {
               {/* Thematic Areas Section */}
             <section className="py-16 bg-white" aria-labelledby="thematic-areas-title">
               <div className="container mx-auto px-4 md:px-0">
-                <h2 id="thematic-areas-title" className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Our Thematic Areas</h2>
+                <h2 id="thematic-areas-title" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">Our Thematic Areas</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                   {thematicAreas.map(area => (
                     <ThematicAreaCard key={area.slug} {...area} />
@@ -119,7 +119,7 @@ interface HomePageProps {
   
             <section className="py-16 bg-gray-100" aria-labelledby="impact-title">
             <div className="container mx-auto px-4 md:px-0">
-              <h2 id="impact-title" className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
+              <h2 id="impact-title" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">
                 Our Impact
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

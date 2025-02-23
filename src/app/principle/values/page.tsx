@@ -46,7 +46,7 @@ const CoreValuesPage: React.FC = () => {
                   <CardTitle className="text-xl font-bold text-gray-800">
                     Inclusion
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-gray-600 text-left">
                     We believe that every Deaf individual has the right to
                     access quality education and career opportunities. We work
                     tirelessly to remove barriers and create a space where Deaf
@@ -68,7 +68,7 @@ const CoreValuesPage: React.FC = () => {
                   <CardTitle className="text-xl font-bold text-gray-800">
                     Empowerment
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-gray-600  text-left">
                     At TIDI, we see education as a tool for empowerment. Our
                     programs are designed to give Deaf learners the skills,
                     knowledge, and confidence they need to pursue careers in
@@ -90,7 +90,7 @@ const CoreValuesPage: React.FC = () => {
                   <CardTitle className="text-xl font-bold text-gray-800">
                     Accessibility
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-gray-600  text-left">
                     Accessibility is at the core of everything we do. From our
                     online platform to our physical tech school, we prioritize
                     making our programs accessible to all Deaf learners. This
@@ -113,7 +113,7 @@ const CoreValuesPage: React.FC = () => {
                   <CardTitle className="text-xl font-bold text-gray-800">
                     Innovation
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-gray-600  text-left">
                     The tech industry is constantly evolving, and so are we.
                     TIDI is committed to staying at the forefront of
                     technological advancements and continuously improving our
@@ -135,7 +135,7 @@ const CoreValuesPage: React.FC = () => {
                   <CardTitle className="text-xl font-bold text-gray-800">
                     Collaboration
                   </CardTitle>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-gray-600  text-left">
                     We recognize that creating lasting change requires
                     collaboration. TIDI values partnerships with organizations,
                     educators, employers, and the Deaf community to create

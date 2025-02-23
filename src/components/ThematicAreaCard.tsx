@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Link from 'next/link';
 import { motion } from 'framer-motion'; // Import motion
@@ -11,18 +12,18 @@ interface ThematicArea {
 }
 
 const ThematicAreaCard: React.FC<ThematicArea> = ({ slug, title, icon, description, link }) => {
-  const cardVariants = { // Framer Motion animation
-      offscreen: { y: 100, opacity: 0 },
-      onscreen: {
-        y: 0,
-        opacity: 1,
-        transition: {
-          type: "spring",
-          bounce: 0.4,
-          duration: 0.8
-        }
-      }
-    };
+  // const cardVariants = { // Framer Motion animation
+  //     offscreen: { y: 100, opacity: 0 },
+  //     onscreen: {
+  //       y: 0,
+  //       opacity: 1,
+  //       transition: {
+  //         type: "spring",
+  //         bounce: 0.4,
+  //         duration: 0.8
+  //       }
+  //     }
+  //   };
     
     
   return (
@@ -43,7 +44,7 @@ const ThematicAreaCard: React.FC<ThematicArea> = ({ slug, title, icon, descripti
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <CardDescription className="text-gray-600 text-center"> {/* Center the description text */}
+          <CardDescription className="text-gray-600 text-center text-left"> {/* Center the description text */}
             {description}
           </CardDescription>
         </CardContent>

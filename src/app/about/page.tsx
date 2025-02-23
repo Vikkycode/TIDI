@@ -1,11 +1,12 @@
 'use client';
+import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+// import { Button } from '@/components/ui/button';
+// import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ImpactCard } from '@/components/ImpactCard';  // Assuming this component exists
+import { ImpactCard } from '@/components/ImpactCard';
 import { DonorPartnerSection } from '@/components/DonorParnterSection';
-import { PartnerCarousel } from '@/components/ParnterCard';
+// import { PartnerCarousel } from '@/components/ParnterCard';
 
 
 interface AboutUsProps {
@@ -38,12 +39,12 @@ const AboutUs: React.FC<AboutUsProps> = () => {
     // ... more donor partners
   ];
 
-  const partners = [
-    { name: "NNAD", logo: "/assets/images/nnad.png", link: "" },
-    { name: "NANDS", logo: "/assets/images/nands.png", link: "" },
-    { name: "AAD", logo: "/assets/images/AAD.png", link: "" }
-    // ... more partners
-  ];
+  // const partners = [
+  //   { name: "NNAD", logo: "/assets/images/nnad.png", link: "" },
+  //   { name: "NANDS", logo: "/assets/images/nands.png", link: "" },
+  //   { name: "AAD", logo: "/assets/images/AAD.png", link: "" }
+  //   // ... more partners
+  // ];
 return (
   <div className="bg-gray-50 min-h-screen font-sans">
     <section className="relative bg-gradient-to-r from-purple-500 to-pink-500 py-20 text-white">
