@@ -43,7 +43,7 @@ export const DonorPartnerSection: React.FC<DonorPartnerSectionProps> = ({ partne
           animate="visible"
         >
           <motion.div
-            className="flex flex-col md:flex-row gap-6 md:gap-10 animate-scroll"
+            className="flex flex-col md:flex-row  gap-6 md:gap-10 animate-scroll"
             style={{ animationDuration: `${partners.length * 3}s` }} // Adjust speed here
           >
             <AnimatePresence initial={false}> {/* Use AnimatePresence for smooth exit animations */}
