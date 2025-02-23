@@ -3,8 +3,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import '@fontsource/poppins/400.css'; // Import Poppins (adjust the weight if needed)
-import '@fontsource/poppins/700.css'; // Import poppins bold(700)
+// import '@fontsource/poppins/400.css'; // Import Poppins (adjust the weight if needed)
+// import '@fontsource/poppins/700.css'; // Import poppins bold(700)
 
 const inter = Inter({ subsets: ['latin'] });
 
