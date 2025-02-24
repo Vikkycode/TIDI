@@ -99,7 +99,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
     <Dialog>
     <DialogTrigger asChild>
       <Card className="transform transition duration-300 ease-in-out hover:scale-105 cursor-pointer">
-      <CardHeader>
+      <CardHeader className="relative">
         <Image
           src={member.imageUrl}
           alt={member.name}
@@ -108,13 +108,47 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
           className="object-cover h-[300px] w-full rounded-t-lg"
         />
         </CardHeader>
-        <CardContent>
-          <CardTitle className="text-xl font-bold text-gray-800">
+        <CardContent className="flex flex-col items-center">
+          <CardTitle className="text-xl font-bold text-gray-800 text-center">
             {member.name}
           </CardTitle>
-          <CardDescription className="text-gray-600">
+          <CardDescription className="text-gray-600 text-center">
             {member.role}
           </CardDescription>
+        {member.socialLinks && (
+          <div className="flex space-x-4 mt-2">
+            {member.socialLinks.linkedin && (
+              <Link
+                href={member.socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-500"
+              >
+                <FaLinkedin size={20} />
+              </Link>
+            )}
+            {member.socialLinks.twitter && (
+              <Link
+                href={member.socialLinks.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-500"
+              >
+                <FaTwitter size={20} />
+              </Link>
+            )}
+            {member.socialLinks.facebook && (
+              <Link
+                href={member.socialLinks.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-blue-500"
+              >
+                <FaFacebook size={20} />
+              </Link>
+            )}
+          </div>
+        )}
         </CardContent>
       </Card>
 
