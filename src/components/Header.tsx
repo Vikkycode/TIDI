@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation'; // Import useRouter
 import {
   FaChevronDown
 } from 'react-icons/fa';
@@ -66,39 +66,74 @@ const navLinks: NavLink[] = [
 interface RenderNavLinkProps extends NavLink {
   pathname: string; // Add pathname as a prop
   level?: number;
+  closeMobileMenu: () => void;
+  isMobileMenuOpen: boolean;
 }
 
-const renderNavLink: React.FC<RenderNavLinkProps> = ({pathname, label, href, subLinks, level = 0 }) => {
+const renderNavLink: React.FC<RenderNavLinkProps> = ({
+  pathname,
+  label,
+  href,
+  subLinks,
+  level = 0,
+  closeMobileMenu,
+  isMobileMenuOpen,
+}) => {
   const isActive = pathname === href || (subLinks && subLinks.some(sub => sub.href === pathname));
   const isDropdown = !!subLinks;
+  const router = useRouter();
+  //No more usestate for isDropdownHovered
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMobileMenu();
+  };
+
+  const handleDropdownItemClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMobileMenu();
+  };
 
   return (
-    <div key={label} className="relative">
+    <div key={label} className="relative" >
       {isDropdown ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none
-              ${isActive ? 'text-blue-500' : 'text-white'} 
-              hover:text-blue-500 transition duration-300`}>
+            <button
+              className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none px-4 py-2
+              ${isActive ? 'text-blue-500' : 'text-white'}
+              hover:text-blue-500 transition duration-300`}
+              style={{ outline: 'none' }}
+            >
               {label} {level === 0 && <FaChevronDown className="h-4 w-4 ml-1" />}
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="bg-black/50 backdrop-blur-sm shadow-md rounded-md p-2 border border-gray-200 mt-2">
-            {subLinks?.map(subLink =>
+            {subLinks?.map((subLink) => (
               <DropdownMenuItem key={subLink.label} asChild>
-                <Link href={subLink.href} className='block w-full px-4 py-2 text-white hover:text-blue-500'>
-                  {renderNavLink({pathname, ...subLink, level: level + 1})}
+                <Link
+                  href={subLink.href}
+                  className="block w-full px-4 py-2 text-white hover:text-blue-500"
+                  onClick={handleDropdownItemClick}
+                >
+                  {renderNavLink({
+                    pathname,
+                    ...subLink,
+                    level: level + 1,
+                    closeMobileMenu,
+                    isMobileMenuOpen,
+                  })}
                 </Link>
               </DropdownMenuItem>
-            )}
-
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-
-        <Link href={href} className={`font-medium font-poppins px-4 py-2  focus:outline-none
-          ${isActive ? 'text-blue-500 border-b-2 border-blue-500' : 'text-white'}
-          hover:text-blue-500 transition duration-300`}>
+        <Link
+          href={href}
+          className={`font-medium font-poppins px-4 py-2  focus:outline-none
+          ${isActive ? 'text-blue-500 ' : 'text-white'}
+          hover:text-blue-500 transition duration-300`}
+          onClick={handleClick}
+        >
           {label}
         </Link>
       )}
@@ -112,6 +147,8 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); //usePathname is now called here
+  const router = useRouter(); // Initialize useRouter
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null); // New state for active dropdown on desktop
 
   useEffect(() => {
     const handleScroll = () => {
@@ -129,6 +166,25 @@ export default function Header() {
     };
   }, []);
 
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+     setActiveDropdown(null);
+  };
+
+  const handleMobileLinkClick = (href: string) => {
+    closeMobileMenu();
+    router.push(href);
+  };
+
+  const handleDropdownMouseEnter = (label: string) => {
+        setActiveDropdown(label);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    setActiveDropdown(null);
+  };
+
+
   return (
     <header className={` ${isScrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'} fixed w-full py-2 top-0 z-50 transition-colors duration-300`}> {/* Transparent Header */}
 
@@ -145,7 +201,24 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map(link => renderNavLink({...link, pathname}))}
+          {navLinks.map(link => (
+              <div key={link.label}
+                 onMouseEnter={() => !isMobileMenuOpen && link.subLinks ? handleDropdownMouseEnter(link.label) : undefined}
+                 onMouseLeave={() => !isMobileMenuOpen ? handleDropdownMouseLeave() : undefined}
+              >
+                  {link.subLinks ? (
+                     <DropdownMenu open={activeDropdown === link.label} onOpenChange={(open) => !open && setActiveDropdown(null)}>
+                         <DropdownMenuTrigger asChild>
+                            <div >
+                               {renderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
+                             </div>
+                          </DropdownMenuTrigger>
+                      </DropdownMenu>
+                  ):
+
+                    renderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
+                </div>
+            ))}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -166,14 +239,42 @@ export default function Header() {
           <div className="md:hidden fixed top-0 left-0 w-full h-[500px] bg-black/50 backdrop-blur-sm z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
             <div className="p-4"> {/* Added padding */}
               <button
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMobileMenu}
+                onTouchStart={closeMobileMenu}
+                onTouchEnd={closeMobileMenu}
                 className="text-white hover:text-blue-500 float-right focus:outline-none"
                 aria-label="Close Mobile Menu"
               >
                 <XIcon className="h-6 w-6" />
               </button>
               <nav className="flex flex-col space-y-4 mt-8"> {/* Added margin-top */}
-                {navLinks.map(link => renderNavLink({...link,pathname}))}
+                {navLinks.map(link => (
+                  <div key={link.label}>
+                    {link.subLinks ? (
+                    <div 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onTouchStart={(e) => {
+                       e.stopPropagation();
+                      }}
+                      onTouchEnd={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                        {renderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
+                    </div>
+                     ) : (
+                    <div
+                       onClick={() => handleMobileLinkClick(link.href)}
+                       onTouchStart={() => handleMobileLinkClick(link.href)}
+                       onTouchEnd={() => handleMobileLinkClick(link.href)}
+                       >
+                      {renderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
+                    </div>
+                      )}
+                  </div>
+                ))}
               </nav>
             </div>
           </div>
