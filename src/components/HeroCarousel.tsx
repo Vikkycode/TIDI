@@ -4,6 +4,7 @@ import Image from 'next/image';
 // import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion'
+import type {Timeout} from 'node:timers'
 
 interface HeroSlide {
   title: string;
@@ -45,7 +46,7 @@ const slides: HeroSlide[] = [
 
 const HeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<Timeout | null>(null);
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
