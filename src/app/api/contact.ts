@@ -1,35 +1,59 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import emailjs from '@emailjs/nodejs';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+type Data = {
+  message: string;
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 
-    try {
-      const result = await emailjs.send(
-        process.env.EMAILJS_SERVICE_ID!,
-        process.env.EMAILJS_TEMPLATE_ID!,
-        {
-          from_name: name,
-          from_email: email,
-          message: message,
-          to_email: process.env.EMAIL_TO, // Your recipient email
-        },
-        // process?.env?.EMAILJS_USER_ID!
-      );
+    // Access environment variables
+    const gmailEmail = process.env.GMAIL_EMAIL;
+    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+    const receiverEmail = process.env.RECEIVER_EMAIL;
 
-      if (result.status === 200) {
-        res.status(200).json({ message: 'Email sent successfully' });
-      } else {
-        console.error('Error sending email:', result.text);
-        res.status(500).json({ message: 'Error sending email' });
-      }
+    // Validation: Check if environment variables are set
+    if (!gmailEmail || !gmailAppPassword || !receiverEmail) {
+      console.error('Missing environment variables!');
+      res.setHeader('Content-Type', 'application/json');
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: gmailEmail, // Use environment variable
+        pass: gmailAppPassword, // Use environment variable
+      },
+    });
+
+    const mailOptions = {
+      from: gmailEmail, // Use environment variable
+      to: receiverEmail, // Use environment variable (THE IMPORTANT CHANGE!)
+      subject: `New Message from Tech Inclusion Website: ${name} `, // CHANGE THE SUBJECT
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `,
+    };
+
+    try {
+      await transporter.sendMail(mailOptions);
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json({ message: 'Email sent successfully' });
     } catch (error) {
       console.error('Error sending email:', error);
+      res.setHeader('Content-Type', 'application/json');
       res.status(500).json({ message: 'Error sending email' });
     }
   } else {
-    res.status(405).end(); // Method Not Allowed
+    res.setHeader('Content-Type', 'application/json');
+    res.status(405).json({ message: 'Method not allowed' });
   }
-};
-export { handler as default};
+}

@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-// import { Metadata } from 'next';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -14,44 +13,43 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
-
-import { useState } from 'react';
-
-// const metadata: Metadata = {
-//   title: 'Contact Us - Tech Inclusion Deaf Initiative',
-//   description: 'Get in touch with us.',
-// };
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function Contact() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState<FormStatus>('idle'); // New state for form status
 
-    
-    const handleSubmit = async (event: React.FormEvent) => {
-      event.preventDefault();
-  
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, message }),
-        });
-  
-        if (response.ok) {
-          setName('');
-          setEmail('');
-          setMessage('');
-        } 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setStatus('loading'); // Set status to loading
 
-      } catch (error) {
-        console.error('Error submitting form:', error);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (response.ok) {
+        setName('');
+        setEmail('');
+        setMessage('');
+        setStatus('success'); // Set status to success
+      } else {
+        setStatus('error'); // Set status to error
+        const errorData = await response.json();
+        console.error('Error submitting form:', errorData.message);
       }
-    };
+    } catch (error) {
+      setStatus('error'); // Set status to error
+      console.error('Error submitting form:', error);
+    }
+  };
 
-;
   return (
     <div className="bg-gray-50 min-h-screen font-sans">
       <main className="container mx-auto px-4 md:px-0 py-16">
@@ -61,7 +59,7 @@ export default function Contact() {
               Contact Us
             </CardTitle>
             <CardDescription className="text-center text-gray-600">
-              We&lsquo;d love to hear from you
+              We'd love to hear from you
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -106,8 +104,21 @@ export default function Contact() {
                 />
               </div>
               <CardFooter className="text-center">
-                <Button type="submit">Send Message</Button>
+                <Button type="submit" disabled={status === 'loading'}>
+                  {status === 'loading' ? 'Sending...' : 'Send Message'}
+                </Button>
               </CardFooter>
+              {/* Feedback messages */}
+              {status === 'success' && (
+                <p className="text-green-500 text-center">
+                  Thank you! Your message has been sent.
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 text-center">
+                  Oops! There was an error. Please try again later.
+                </p>
+              )}
             </form>
           </CardContent>
         </Card>
