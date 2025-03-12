@@ -4,7 +4,9 @@ import Image from 'next/image';
 // import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion'
-import type {Timeout} from 'node:timers'
+// import type {Timeout} from 'node:timers'
+
+type Timeout = ReturnType<typeof setTimeout>;
 
 interface HeroSlide {
   title: string;
