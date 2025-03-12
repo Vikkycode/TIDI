@@ -65,7 +65,7 @@ export default function Contact() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <Form>
+              {/* <Form> */}
               <div>
                 <Label htmlFor="name" className="block mb-2">
                   Your Name
@@ -121,7 +121,7 @@ export default function Contact() {
                   Oops! There was an error. Please try again later.
                 </p>
               )}
-              </Form>
+              {/* </Form> */}
             </form>
           </CardContent>
         </Card>
