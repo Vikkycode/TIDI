@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation'; // Import useRouter
+import { usePathname, useRouter} from 'next/navigation'; // Import useRouter
 import {
   FaChevronDown
 } from 'react-icons/fa';
@@ -70,7 +70,7 @@ interface RenderNavLinkProps extends NavLink {
   isMobileMenuOpen: boolean;
 }
 
-const renderNavLink: React.FC<RenderNavLinkProps> = ({
+const RenderNavLink: React.FC<RenderNavLinkProps> = ({
   pathname,
   label,
   href,
@@ -81,14 +81,12 @@ const renderNavLink: React.FC<RenderNavLinkProps> = ({
 }) => {
   const isActive = pathname === href || (subLinks && subLinks.some(sub => sub.href === pathname));
   const isDropdown = !!subLinks;
-  const router = useRouter();
-  //No more usestate for isDropdownHovered
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = () => {
     closeMobileMenu();
   };
 
-  const handleDropdownItemClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleDropdownItemClick = () => {
     closeMobileMenu();
   };
 
@@ -114,7 +112,7 @@ const renderNavLink: React.FC<RenderNavLinkProps> = ({
                   className="block w-full px-4 py-2 text-white hover:text-blue-500"
                   onClick={handleDropdownItemClick}
                 >
-                  {renderNavLink({
+                  {RenderNavLink({
                     pathname,
                     ...subLink,
                     level: level + 1,
@@ -210,13 +208,13 @@ export default function Header() {
                      <DropdownMenu open={activeDropdown === link.label} onOpenChange={(open) => !open && setActiveDropdown(null)}>
                          <DropdownMenuTrigger asChild>
                             <div >
-                               {renderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
+                               {RenderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
                              </div>
                           </DropdownMenuTrigger>
                       </DropdownMenu>
                   ):
 
-                    renderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
+                    RenderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
                 </div>
             ))}
         </nav>
@@ -262,7 +260,7 @@ export default function Header() {
                         e.stopPropagation();
                       }}
                     >
-                        {renderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
+                        {RenderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
                     </div>
                      ) : (
                     <div
@@ -270,7 +268,7 @@ export default function Header() {
                        onTouchStart={() => handleMobileLinkClick(link.href)}
                        onTouchEnd={() => handleMobileLinkClick(link.href)}
                        >
-                      {renderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
+                      {RenderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
                     </div>
                       )}
                   </div>
