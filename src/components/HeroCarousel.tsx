@@ -45,7 +45,7 @@ const slides: HeroSlide[] = [
 
 const HeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const timerRef = useRef<number | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
