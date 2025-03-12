@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
+
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-// import '@fontsource/poppins/400.css'; // Import Poppins (adjust the weight if needed)
-// import '@fontsource/poppins/700.css'; // Import poppins bold(700)
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,14 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-       <link rel="icon" href="/TIDI logo.ico"/>
+        <link rel="icon" href="/TIDI logo.ico" />
       </head>
       <body className={inter.className}>
         <Header />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
+        <Toaster /> {/* Add the Toaster component here */}
       </body>
     </html>
   );

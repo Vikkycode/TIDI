@@ -56,6 +56,7 @@ const valuesData: ValueItem[] = [
     icon: <FaUsers className="text-5xl text-blue-500 mb-2" />,
   },
 ];
+const lazyFeatureSection = React.lazy(()=> import('./FeatureSection'))
 
 const HomePage: React.FC<HomePageProps> = ({ impactData, galleryImages, partners }) => {
   const [expandedValue, setExpandedValue] = useState<string | null>(null);

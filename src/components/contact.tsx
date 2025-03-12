@@ -10,6 +10,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -64,6 +65,7 @@ export default function Contact() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              <Form>
               <div>
                 <Label htmlFor="name" className="block mb-2">
                   Your Name
@@ -119,6 +121,7 @@ export default function Contact() {
                   Oops! There was an error. Please try again later.
                 </p>
               )}
+              </Form>
             </form>
           </CardContent>
         </Card>

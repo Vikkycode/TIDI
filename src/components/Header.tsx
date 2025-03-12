@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,memo,useCallback} from 'react';
 import { usePathname, useRouter} from 'next/navigation'; // Import useRouter
 import {
   FaChevronDown
@@ -82,11 +82,11 @@ const RenderNavLink: React.FC<RenderNavLinkProps> = ({
   const isActive = pathname === href || (subLinks && subLinks.some(sub => sub.href === pathname));
   const isDropdown = !!subLinks;
 
-  const handleClick = () => {
+  const handleClick =() => {
     closeMobileMenu();
   };
 
-  const handleDropdownItemClick = () => {
+  const handleDropdownItemClick =() => {
     closeMobileMenu();
   };
 
@@ -141,7 +141,7 @@ const RenderNavLink: React.FC<RenderNavLinkProps> = ({
 
 
 
-export default function Header() {
+function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); //usePathname is now called here
@@ -164,27 +164,27 @@ export default function Header() {
     };
   }, []);
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu =useCallback(() => {
     setIsMobileMenuOpen(false);
      setActiveDropdown(null);
-  };
+  },[setIsMobileMenuOpen,setActiveDropdown]);
 
-  const handleMobileLinkClick = (href: string) => {
+  const handleMobileLinkClick = useCallback((href: string) => {
     closeMobileMenu();
     router.push(href);
-  };
+  },[closeMobileMenu,router]);
 
-  const handleDropdownMouseEnter = (label: string) => {
+  const handleDropdownMouseEnter =useCallback((label: string) => {
         setActiveDropdown(label);
-  };
+  },[setActiveDropdown]);
 
-  const handleDropdownMouseLeave = () => {
+  const handleDropdownMouseLeave =useCallback(() => {
     setActiveDropdown(null);
-  };
+  },[setActiveDropdown]);
 
 
   return (
-    <header className={` ${isScrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'} fixed w-full py-2 top-0 z-50 transition-colors duration-300`}> {/* Transparent Header */}
+    <header className={` ${isScrolled ? 'bg-black/50 backdrop-blur-sm' : ''} bg-black/50 backdrop-blur-sm fixed w-full py-2 top-0 z-50 transition-colors duration-300`}> {/* Transparent Header */}
 
       <div className="container mx-auto flex items-center justify-between px-4 mt-2 md:px-0"> {/* Added margin-top */}
         <Link href="/" aria-label="Home">
@@ -281,3 +281,6 @@ export default function Header() {
     </header>
   );
 }
+
+export default memo(Header);
+

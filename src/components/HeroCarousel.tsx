@@ -1,13 +1,13 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface HeroSlide {
   title: string;
-  subtitle?: string;
+  description: string;
   imageUrl: string;
   imageAlt?: string;
   buttonText?: string;
@@ -16,23 +16,26 @@ interface HeroSlide {
 const slides: HeroSlide[] = [
   {
     title: 'Deaf Tech Innovators',
-    subtitle: 'Empowering the Deaf community through tech skills and opportunities',
+    description: 'Empowering the Deaf community through tech skills and opportunities',
     imageUrl: '/assets/images/image7.jpg',
     imageAlt: 'deaf parnters',
+    buttonText:'Learn More',
     buttonLink: '/team/key-staff',
   },
   {
     title: 'Tech Inclusion for All',
-    subtitle: 'Building a vibrant tech community, empowering Deaf individuals',
+    description: 'Building a vibrant tech community, empowering Deaf individuals',
     imageUrl: '/assets/images/image8.jpg',
     imageAlt: 'deaf community',
+    buttonText:'Explore',
     buttonLink: '/gallery',
   },
   {
     title: 'Shaping the Deaf Digital World',
-    subtitle: 'Hands-on tech training and development for the Deaf community',
+    description: 'Hands-on tech training and development for the Deaf community',
     imageUrl: '/assets/images/image10.jpg',
     imageAlt: 'hand-on practical workshop',
+    buttonText:'Discover',
     buttonLink: '/gallery',
   },
   // Add more slides...
@@ -41,118 +44,80 @@ const slides: HeroSlide[] = [
 
 
 const HeroCarousel: React.FC = () => {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const currentSlide = slides[currentSlideIndex];
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const timerRef = useRef<number | null>(null);
 
+  const nextSlide = () => {
+    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+  };
 
   useEffect(() => {
-    // Set up an interval to change the slide every 5 seconds
-    const intervalId = setInterval(() => {
-      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 5000);
+    // Clear existing timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
 
-    // Clear the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []);
+    // Start new timer
+    timerRef.current = setTimeout(nextSlide, 5000); // 5 seconds
 
-  const handlePrevSlide = () => {
-    setCurrentSlideIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-    );
+    // Cleanup: clear timer on unmount
+    return () => clearTimeout(timerRef.current || 0);
+  }, [currentSlide]);
+
+  const handleDotClick = (index: number) => {
+    setCurrentSlide(index);
   };
-
-  const handleNextSlide = () => {
-    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-  };
-
-
-  const heroVariants = {
-    hidden: { opacity: 0, x: 40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1, type: "spring", ease: "easeOut" } }
-  };
-
-  // const cardVariants = {
-  //   hidden: { opacity: 0, scale: 0.95 },
-  //   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: "spring", stiffness: 100 } }
-  // };
-
-  // const iconVariants = {
-  //   hover: { rotate: 360 },
-  //   tap: { scale: 0.95 }
-  // };
-
 
   return (
-    <section>
-      <motion.div
-        className="relative w-full h-[500px] flex flex-row items-center justify-center"
-        variants={heroVariants}
-        initial="hidden"
-        animate="visible"
-        key={currentSlideIndex}>
-        <Image
-          src={currentSlide.imageUrl}
-          alt={currentSlide.imageAlt || 'Hero Banner Image'}
-          layout='fill'
-          objectFit="cover"
-          priority={true}
-          className="absolute h-screen w-full object-cover inset-0 z-0"
-        />
-        <button
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 text-white hover:text-blue-300 focus:outline-none"
-          onClick={handlePrevSlide}
-          aria-label="Previous Slide"
+    <section className="relative w-full overflow-hidden">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
+          className="w-full"
         >
-          {/* Left Arrow SVG */}
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 text-white hover:text-blue-300 focus:outline-none"
-          onClick={handleNextSlide}
-          aria-label="Next Slide"
-        >
-          {/* Right Arrow SVG */}
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-        {/* Navigation Dots */}
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
-          {slides?.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlideIndex(index)}
-              className={`h-3 w-3 rounded-full mx-1 focus:outline-none ${currentSlideIndex === index ? 'bg-blue-500' : 'bg-gray-400 opacity-50'
-                }`}
-              aria-label={`Slide ${index + 1}`}
-            ></button>
-          ))}
-        </div>
-        <div className="absolute inset-0 bg-black bg-opacity-70 z-10"></div>
-        <div className="z-10 text-center text-white px-4 mt-40 md:mt-40 lg:mt-56 md:px-0">
-          <motion.h2
-            className="text-4xl md:text-6xl lg:text-7xl font-poppins font-bold mt-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-lg"
-            variants={heroVariants}
-          >
-
-            {currentSlide.title}
-          </motion.h2>
-          {currentSlide.subtitle && (
-            <p className="font- text-lg md:text-xl mb-8 drop-shadow-md">
-              {currentSlide.subtitle}
-            </p>
-          )}
-          {currentSlide.buttonLink && (
-            <Link href={currentSlide.buttonLink}>
-              <Button className="bg-white font-mono text-blue-500 font-bold py-3 px-6 rounded-full hover:bg-transparent hover:text-white hover:border-2 border-blue-500 transition duration-300">
-                {currentSlide.buttonText || 'Learn More'}
-              </Button>
-            </Link>
-          )}
-        </div>
-      </motion.div>
+          <div className="relative w-full h-[500px] md:h-[600px]">
+            <Image
+              src={slides[currentSlide].imageUrl}
+              alt={slides[currentSlide].title}
+              fill
+              className="object-cover"
+              priority={true}
+            />
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 md:px-10">
+              <h2 className="text-white text-3xl md:text-5xl font-bold mb-4">
+                {slides[currentSlide].title}
+              </h2>
+              <p className="text-white text-md md:text-lg mb-6">
+                {slides[currentSlide].description}
+              </p>
+              {slides[currentSlide].buttonText && slides[currentSlide].buttonLink && (
+                <Link
+                  href={slides[currentSlide].buttonLink || ''}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full"
+                >
+                  {slides[currentSlide].buttonText}
+                </Link>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleDotClick(index)}
+            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+              currentSlide === index ? 'bg-blue-500' : 'bg-gray-300 hover:bg-gray-400'
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 };
