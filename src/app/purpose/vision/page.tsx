@@ -76,7 +76,7 @@ const VisionPage: React.FC = () => {
               {/* Card 2 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/icons/E-WEB-Goal-04.png" // Replace with relevant image
+                  src="/assets/images/image4.jpg" // Replace with relevant image
                   alt="Deaf Leaders in Tech"
                   width={400}
                   height={300}
@@ -97,7 +97,7 @@ const VisionPage: React.FC = () => {
               {/* Card 3 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/icons/E-WEB-Goal-04.png" // Replace with relevant image
+                  src="/assets/images/image5.jpg" // Replace with relevant image
                   alt="Empowered Deaf Communities"
                   width={400}
                   height={300}

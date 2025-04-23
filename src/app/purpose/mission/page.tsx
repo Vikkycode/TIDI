@@ -49,7 +49,7 @@ const MissionPage: React.FC = () => {
               {/* Card 1 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/icons/E-WEB-Goal-04.png" // Replace with relevant image
+                  src="/assets/images/Accessible Edu.png" // Replace with relevant image
                   alt="Accessible Education"
                   width={400}
                   height={300}
@@ -68,7 +68,7 @@ const MissionPage: React.FC = () => {
               {/* Card 2 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/icons/E-WEB-Goal-04.png" // Replace with relevant image
+                  src="/assets/images/building community.png" // Replace with relevant image
                   alt="Building Community"
                   width={400}
                   height={300}
@@ -87,7 +87,7 @@ const MissionPage: React.FC = () => {
               {/* Card 3 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/icons/E-WEB-Goal-04.png" // Replace with relevant image
+                  src="/assets/images/advocacy.png" // Replace with relevant image
                   alt="Advocating for Change"
                   width={400}
                   height={300}

@@ -41,7 +41,7 @@ const teamData: TeamMember[] = [
     employment and community leadership. His mission is to create inclusive
     pathways for Deaf learners, equipping them with essential skills for the
     digital era.`,
-    imageUrl: '/assets/images/Abubakar.jpg',
+    imageUrl: '/assets/images/abu.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/abubakar-mumbu-idris',
       twitter: 'https://x.com/ELMumbuAbubakar',
@@ -51,11 +51,21 @@ const teamData: TeamMember[] = [
     {
     name: 'Victor Oricha',
     role: 'Co-Founder & COO, Tech Inclusion for the Deaf Initiative',
-    bio: 'Victor Oricha is a dedicated advocate for disability inclusion especially deaf community and a frontend software engineer with accessible te',
-    imageUrl: '/assets/images/victor.jpg',
+    bio: 'Victor Oricha is a dedicated accessible and inclusive STEM educator for the Deaf communities across Nigeria. He understands the communication,technical and emotional challenges Deaf individuals face through barriers, he is passionate about creating accessible learning spaces for the Deaf communities in tech and show them that there is possible in impossbility.   ',
+    imageUrl: '/assets/images/Victor 2.jpg',
     socialLinks: {
       linkedin: 'https://www.linkedin.com/in/victor-oricha/',
       twitter: 'https://x.com/oricha_victor',
+      facebook:'https://www.facebook.com/victor.emmanuel982'
+    },
+  },
+  {
+    name: 'Kabiru Mohammed',
+    role: 'Assistant Social Media Manager, TIDI',
+    bio: '',
+    imageUrl: '/assets/images/kabiru.jpg',
+    socialLinks: {
+      linkedin: 'https://www.linkedin.com/in/victor-oricha/',
       facebook:'https://www.facebook.com/victor.emmanuel982'
     },
   },
@@ -112,7 +122,7 @@ const TeamMemberCard: React.FC<{ member: TeamMember }> = ({ member }) => {
           <CardTitle className="text-xl font-bold text-gray-800 text-center">
             {member.name}
           </CardTitle>
-          <CardDescription className="text-gray-600 text-center">
+          <CardDescription className="text-gray-600 text-justify">
             {member.role}
           </CardDescription>
         {member.socialLinks && (

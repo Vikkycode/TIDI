@@ -9,7 +9,7 @@ const AboutUs: React.FC = () => {
   const missionStatement = "Our mission is to empower Deaf individuals in Nigeria by fostering inclusive tech education and employment opportunities.";
   const visionStatement = "We envision a future where Deaf individuals are leading innovators and problem-solvers in the tech world.";
   const impactData = [
-    { title: "Trained", number: 50, description: "Deaf individuals trained in tech skills." },
+    { title: "Trained", number: '300+', description: "Deaf individuals trained in tech skills." },
     // { title: "Employed", number: 3560, description: "Deaf professionals employed in the tech industry." },
     // ... more impact data
   ];

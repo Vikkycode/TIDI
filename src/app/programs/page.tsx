@@ -32,10 +32,10 @@ const ProgramsPage: React.FC = () => {
         </section>
 
         {/* Programs Section */}
-        <section className="py-16 bg-white">
+        {/* <section className="py-16 bg-white">
           <div className="container mx-auto px-4 md:px-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Program 1 */}
+            
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
                   src="/images/coding-bootcamp.jpg" // Replace with relevant image
@@ -61,7 +61,7 @@ const ProgramsPage: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {/* Program 2 */}
+            
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
                   src="/images/digital-literacy.jpg" // Replace with relevant image
@@ -86,12 +86,12 @@ const ProgramsPage: React.FC = () => {
                   </Link>
                 </CardContent>
               </Card>
-
-              {/* Program 3 - Add more programs as needed */}
             </div>
           </div>
-        </section>
-
+        </section> */}
+        <div className='flex h-[50vh] items-center justify-center'>
+          UPCOMING
+        </div>
         {/* Call to Action Section */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto text-center px-4 md:px-0">

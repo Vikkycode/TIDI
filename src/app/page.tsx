@@ -67,9 +67,9 @@ export default function Home() {
   
   
   const impactData = [
-    { title: 'Educated', number: '30+', description: 'Deaf individuals trained in STEM skills.', link: '/educated' },
-    { title: 'Communities Reached', number: '1', description: 'Across different states in Nigeria.', link: '/communities' },
-    { title: 'Partnerships', number: '4', description: 'With organizations committed to Deaf inclusion.', link: '/partnerships' }
+    { title: 'Educated', number: '300+', description: 'Deaf individuals trained in STEM skills.', link: '/educated' },
+    { title: 'Communities Reached', number: '4+', description: 'Across different states in Nigeria.', link: '/communities' },
+    { title: 'Partnerships', number: '4+', description: 'With organizations committed to Deaf inclusion.', link: '/partnerships' }
   ];
   
   const partners = [
