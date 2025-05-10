@@ -5,15 +5,13 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
+  DropdownMenuItem, // Import from shadcn
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
-import React, { useState, useEffect,memo,useCallback} from 'react';
-import { usePathname, useRouter} from 'next/navigation'; // Import useRouter
-import {
-  FaChevronDown
-} from 'react-icons/fa';
-import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
-
+import React, { useState, useEffect, memo, useCallback } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { FaChevronDown } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavLink {
   label: string;
@@ -25,7 +23,7 @@ const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   {
     label: 'Who We Are',
-    href: '/who-we-are',
+    href: '/who-we-are', // Optional: parent link can also navigate
     subLinks: [
       { label: 'About', href: '/about' },
       {
@@ -51,7 +49,6 @@ const navLinks: NavLink[] = [
       { label: 'Core Values', href: '/principle/values' },
     ]
   },
-
   {
     label: 'What We Do',
     href: '/what-we-do',
@@ -64,13 +61,16 @@ const navLinks: NavLink[] = [
 ];
 
 interface RenderNavLinkProps extends NavLink {
-  pathname: string; // Add pathname as a prop
+  pathname: string;
   level?: number;
   closeMobileMenu: () => void;
   isMobileMenuOpen: boolean;
+  activeDropdown?: string | null;
+  setActiveDropdown?: (label: string | null) => void;
+  onDesktopItemClick?: () => void;
 }
 
-const RenderNavLink: React.FC<RenderNavLinkProps> = ({
+const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
   pathname,
   label,
   href,
@@ -78,209 +78,252 @@ const RenderNavLink: React.FC<RenderNavLinkProps> = ({
   level = 0,
   closeMobileMenu,
   isMobileMenuOpen,
+  activeDropdown,
+  setActiveDropdown,
+  onDesktopItemClick,
 }) => {
-  const isActive = pathname === href || (subLinks && subLinks.some(sub => sub.href === pathname));
+  const router = useRouter();
+  const isActive = pathname === href || (href !== '/' && pathname.startsWith(href)) || (subLinks && subLinks.some(sub => pathname.startsWith(sub.href)));
   const isDropdown = !!subLinks;
 
-  const handleClick =() => {
-    closeMobileMenu();
+  const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
+
+  const handleMobileAccordionToggle = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation(); // Prevent event bubbling that might close the main mobile menu
+    if (isDropdown) {
+      setIsMobileSubmenuOpen(!isMobileSubmenuOpen);
+    }
   };
 
-  const handleDropdownItemClick =() => {
+  const handleMobileDirectLinkClick = () => {
+    router.push(href);
     closeMobileMenu();
   };
+  
+  const handleDesktopDirectLinkClick = () => {
+    if (onDesktopItemClick) onDesktopItemClick();
+    // Navigation is handled by Link component
+  };
 
-  return (
-    <div key={label} className="relative" >
-      {isDropdown ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button
-              className={`flex items-center space-x-2 cursor-pointer font-medium focus:outline-none px-4 py-2
-              ${isActive ? 'text-blue-500' : 'text-white'}
-              hover:text-blue-500 transition duration-300`}
-              style={{ outline: 'none' }}
-            >
-              {label} {level === 0 && <FaChevronDown className="h-4 w-4 ml-1" />}
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-black/50 backdrop-blur-sm shadow-md rounded-md p-2 border border-gray-200 mt-2">
-            {subLinks?.map((subLink) => (
-              <DropdownMenuItem key={subLink.label} asChild>
-                <Link
-                  href={subLink.href}
-                  className="block w-full px-4 py-2 text-white hover:text-blue-500"
-                  onClick={handleDropdownItemClick}
-                >
-                  {RenderNavLink({
-                    pathname,
-                    ...subLink,
-                    level: level + 1,
-                    closeMobileMenu,
-                    isMobileMenuOpen,
-                  })}
-                </Link>
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      ) : (
-        <Link
-          href={href}
-          className={`font-medium font-poppins px-4 py-2  focus:outline-none
-          ${isActive ? 'text-blue-500 ' : 'text-white'}
-          hover:text-blue-500 transition duration-300`}
-          onClick={handleClick}
+
+  // --- Mobile Menu Rendering ---
+  if (isMobileMenuOpen) {
+    if (isDropdown) {
+      return (
+        <div className="w-full">
+          <button
+            onClick={handleMobileAccordionToggle}
+            onTouchStart={handleMobileAccordionToggle} // Added touch event
+            className={`flex items-center justify-between w-full text-left space-x-2 cursor-pointer font-medium focus:outline-none py-3 text-sm
+              ${isActive ? 'text-blue-400' : 'text-white'} hover:text-blue-300 transition duration-150`}
+            aria-expanded={isMobileSubmenuOpen}
+          >
+            <span>{label}</span>
+            <FaChevronDown className={`h-3 w-3 transition-transform duration-200 ${isMobileSubmenuOpen ? 'rotate-180' : ''}`} />
+          </button>
+          <AnimatePresence>
+            {isMobileSubmenuOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="pl-4 mt-1 space-y-1 overflow-hidden border-l border-gray-700"
+              >
+                {subLinks?.map((subLink) => (
+                  <RenderNavLinkComponent
+                    key={subLink.label}
+                    pathname={pathname}
+                    {...subLink}
+                    level={level + 1}
+                    closeMobileMenu={closeMobileMenu}
+                    isMobileMenuOpen={isMobileMenuOpen}
+                  />
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      );
+    } else {
+      // Mobile direct link
+      return (
+        <button // Changed Link to button for consistent touch handling, navigation via router.push
+          onClick={handleMobileDirectLinkClick}
+          onTouchStart={handleMobileDirectLinkClick} // Added touch event
+          className={`block w-full text-left font-medium py-3 text-sm
+            ${isActive ? 'text-blue-400' : 'text-white'} hover:text-blue-300 transition duration-150`}
         >
           {label}
-        </Link>
-      )}
-    </div>
-  );
-};
+        </button>
+      );
+    }
+  }
 
+  // --- Desktop Menu Rendering ---
+  if (isDropdown && setActiveDropdown) {
+    return (
+      <DropdownMenu open={activeDropdown === label} onOpenChange={(open) => setActiveDropdown(open ? label : null)}>
+        <DropdownMenuTrigger asChild>
+          <button
+            className={`flex items-center space-x-1 cursor-pointer font-medium focus:outline-none px-3 py-2 text-sm
+              ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
+          >
+            <span>{label}</span>
+            <FaChevronDown className={`h-3 w-3 transition-transform duration-200 ${activeDropdown === label ? 'rotate-180' : ''}`} />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className="bg-black/70 backdrop-blur-md shadow-lg rounded-md p-1 border border-gray-700 mt-2 w-52" // Adjusted width
+          onMouseLeave={() => setActiveDropdown(null)} // Close if mouse leaves content area
+        >
+          {subLinks?.map((subLink) => (
+            <DropdownMenuItem key={subLink.label} asChild className="focus:bg-gray-700 rounded p-0 text-sm">
+              {/* RenderNavLinkComponent handles if it's a link or another dropdown */}
+              <RenderNavLinkComponent
+                pathname={pathname}
+                {...subLink}
+                level={level + 1}
+                closeMobileMenu={closeMobileMenu}
+                isMobileMenuOpen={false} // Explicitly false for desktop path
+                activeDropdown={activeDropdown}
+                setActiveDropdown={setActiveDropdown}
+                onDesktopItemClick={onDesktopItemClick}
+              />
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  } else {
+    // Desktop direct link
+    return (
+      <Link
+        href={href}
+        className={`font-medium px-3 py-2 focus:outline-none text-sm
+          ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
+        onClick={handleDesktopDirectLinkClick}
+      >
+        {label}
+      </Link>
+    );
+  }
+};
 
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname(); //usePathname is now called here
-  const router = useRouter(); // Initialize useRouter
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null); // New state for active dropdown on desktop
+  const pathname = usePathname();
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const closeMobileMenu =useCallback(() => {
+  const closeMobileMenu = useCallback(() => {
     setIsMobileMenuOpen(false);
-     setActiveDropdown(null);
-  },[setIsMobileMenuOpen,setActiveDropdown]);
+  }, []);
 
-  const handleMobileLinkClick = useCallback((href: string) => {
-    closeMobileMenu();
-    router.push(href);
-  },[closeMobileMenu,router]);
-
-  const handleDropdownMouseEnter =useCallback((label: string) => {
-        setActiveDropdown(label);
-  },[setActiveDropdown]);
-
-  const handleDropdownMouseLeave =useCallback(() => {
-    setActiveDropdown(null);
-  },[setActiveDropdown]);
+  // Add body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset'; // Cleanup on unmount
+    };
+  }, [isMobileMenuOpen]);
 
 
   return (
-    <header className={` ${isScrolled ? 'bg-black/50 backdrop-blur-sm' : ''} bg-black/50 backdrop-blur-sm fixed w-full py-2 top-0 z-50 transition-colors duration-300`}> {/* Transparent Header */}
-
-      <div className="container mx-auto flex items-center justify-between px-4 mt-2 md:px-0"> {/* Added margin-top */}
-        <Link href="/" aria-label="Home">
-          {/* TIDI Logo or Name */}
-          <Image
-            src="/assets/images/TIDI logo.png"  // Replace with the actual path to your logo image
-            alt="TIDI Logo"
-            width={70}
-            height={70}
-          />
+    <header className={`fixed w-full py-2 top-0 z-50 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-black/70 backdrop-blur-md' : 'bg-transparent'}`}>
+      <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
+        <Link href="/" onClick={closeMobileMenu} aria-label="Home">
+          <Image src="/assets/images/TIDI logo.png" alt="TIDI Logo" width={60} height={60} priority />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-2 lg:space-x-4">
           {navLinks.map(link => (
-              <div key={link.label}
-                 onMouseEnter={() => !isMobileMenuOpen && link.subLinks ? handleDropdownMouseEnter(link.label) : undefined}
-                 onMouseLeave={() => !isMobileMenuOpen ? handleDropdownMouseLeave() : undefined}
-              >
-                  {link.subLinks ? (
-                     <DropdownMenu open={activeDropdown === link.label} onOpenChange={(open) => !open && setActiveDropdown(null)}>
-                         <DropdownMenuTrigger asChild>
-                            <div >
-                               {RenderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
-                             </div>
-                          </DropdownMenuTrigger>
-                      </DropdownMenu>
-                  ):
-
-                    RenderNavLink({...link, pathname,closeMobileMenu,isMobileMenuOpen})}
-                </div>
-            ))}
+            <div
+              key={link.label}
+              onMouseEnter={() => link.subLinks && setActiveDropdown(link.label)}
+              onMouseLeave={() => link.subLinks && setActiveDropdown(null)} // Handles leaving trigger area
+            >
+              <RenderNavLinkComponent
+                {...link}
+                pathname={pathname}
+                closeMobileMenu={closeMobileMenu}
+                isMobileMenuOpen={false}
+                activeDropdown={activeDropdown}
+                setActiveDropdown={setActiveDropdown}
+                onDesktopItemClick={() => setActiveDropdown(null)}
+              />
+            </div>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white hover:text-blue-500 focus:outline-none"
+          className="md:hidden text-white hover:text-blue-300 focus:outline-none z-50" // Ensure button is above backdrop
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Mobile Menu"
+          aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? (
-            <XIcon className='h-6 w-6' />
-          ) : (
-            <MenuIcon className="h-6 w-6" />
-          )}
+          {isMobileMenuOpen ? <XIcon className='h-7 w-7' /> : <MenuIcon className="h-7 w-7" />}
         </button>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden fixed top-0 left-0 w-full h-[500px] bg-black/50 backdrop-blur-sm z-50 overflow-y-auto"> {/* Fixed position, full-screen */}
-            <div className="p-4"> {/* Added padding */}
-              <button
-                onClick={closeMobileMenu}
-                onTouchStart={closeMobileMenu}
-                onTouchEnd={closeMobileMenu}
-                className="text-white hover:text-blue-500 float-right focus:outline-none"
-                aria-label="Close Mobile Menu"
-              >
-                <XIcon className="h-6 w-6" />
-              </button>
-              <nav className="flex flex-col space-y-4 mt-8"> {/* Added margin-top */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40" // Backdrop
+              onClick={closeMobileMenu} // Close on backdrop click
+            />
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="md:hidden fixed top-0 right-0 w-full max-w-xs h-screen bg-gray-900 shadow-xl z-50 overflow-y-auto p-6"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside menu
+            >
+              <div className="flex justify-between items-center mb-8">
+                <Link href="/" onClick={closeMobileMenu} aria-label="Home">
+                  <Image src="/assets/images/TIDI logo.png" alt="TIDI Logo" width={50} height={50} />
+                </Link>
+                {/* Close button is now part of the main header bar for mobile */}
+              </div>
+              <nav className="flex flex-col space-y-2">
                 {navLinks.map(link => (
-                  <div key={link.label}>
-                    {link.subLinks ? (
-                    <div 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                      onTouchStart={(e) => {
-                       e.stopPropagation();
-                      }}
-                      onTouchEnd={(e) => {
-                        e.stopPropagation();
-                      }}
-                    >
-                        {RenderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
-                    </div>
-                     ) : (
-                    <div
-                       onClick={() => handleMobileLinkClick(link.href)}
-                       onTouchStart={() => handleMobileLinkClick(link.href)}
-                       onTouchEnd={() => handleMobileLinkClick(link.href)}
-                       >
-                      {RenderNavLink({ ...link, pathname, closeMobileMenu, isMobileMenuOpen })} {/* Pass isMobileMenuOpen */}
-                    </div>
-                      )}
-                  </div>
+                  <RenderNavLinkComponent
+                    key={link.label}
+                    {...link}
+                    pathname={pathname}
+                    closeMobileMenu={closeMobileMenu}
+                    isMobileMenuOpen={true}
+                  />
                 ))}
               </nav>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
 }
 
 export default memo(Header);
-

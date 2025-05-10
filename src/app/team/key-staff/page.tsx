@@ -59,16 +59,16 @@ const teamData: TeamMember[] = [
       facebook:'https://www.facebook.com/victor.emmanuel982'
     },
   },
-  {
-    name: 'Kabiru Mohammed',
-    role: 'Assistant Social Media Manager, TIDI',
-    bio: '',
-    imageUrl: '/assets/images/kabiru.jpg',
-    socialLinks: {
-      linkedin: 'https://www.linkedin.com/in/victor-oricha/',
-      facebook:'https://www.facebook.com/victor.emmanuel982'
-    },
-  },
+  // {
+  //   name: 'Kabiru Mohammed',
+  //   role: 'Assistant Social Media Manager, TIDI',
+  //   bio: '',
+  //   imageUrl: '/assets/images/kabiru.jpg',
+  //   socialLinks: {
+  //     linkedin: 'https://www.linkedin.com/in/victor-oricha/',
+  //     facebook:'https://www.facebook.com/victor.emmanuel982'
+  //   },
+  // },
 
 ];
 
