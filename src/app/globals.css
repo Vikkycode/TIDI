@@ -77,3 +77,27 @@
   }
 }
 
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0%); /* Start position */
+  }
+  100% {
+    /*
+      Since the content is duplicated, the total width of the scrolling div
+      is twice the width of the original set of logos.
+      Translating by -50% of this total width means we scroll exactly
+      by the width of one original set of logos. When the animation loops,
+      it appears seamless.
+    */
+    transform: translateX(-50%);
+  }
+}
+
+/* Class to apply the scrolling animation */
+.animate-scroll-horizontal {
+  display: flex; /* Arrange logos in a horizontal line */
+  width: fit-content; /* Make the div only as wide as its content (the duplicated logos) */
+  animation: scrollHorizontal linear infinite;
+  /* animation-duration is set inline via the style prop in the React component */
+  will-change: transform; /* Performance hint for the browser */
+}

@@ -66,7 +66,7 @@ interface RenderNavLinkProps extends NavLink {
   closeMobileMenu: () => void;
   isMobileMenuOpen: boolean;
   activeDropdown?: string | null;
-  setActiveDropdown?: string | null;
+  setActiveDropdown?: (label: string | null) => void;
   onDesktopItemClick?: () => void;
 }
 
