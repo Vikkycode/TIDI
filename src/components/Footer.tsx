@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-blue-600 text-white py-8 mt-12">
       <div className="container mx-auto text-center md:text-left grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h3 className="text-xl font-bold mb-4">Tech Inclusion Deaf Initiative</h3>
+          <h3 className="text-xl font-bold mb-4">Tech Inclusion for the Deaf Initiative</h3>
           <p className="text-white">
             Empowering the Deaf community through STEM education.
           </p>

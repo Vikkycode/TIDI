@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import Link from 'next/link';
 // Optional: Import icons if you want to add them
-import { Code, BarChart3, Palette, Video, Handshake, Target } from 'lucide-react';
+import { Code, BarChart3,Video, Handshake, Target } from 'lucide-react';
 
 // Define the structure for a service
 interface Service {

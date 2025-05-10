@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { notFound } from 'next/navigation';
-import thematicAreas, { ThematicArea } from '@/lib/data'; // Import ThematicArea type
+import thematicAreas from '@/lib/data'; // Import ThematicArea type
 import { motion } from 'framer-motion';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
