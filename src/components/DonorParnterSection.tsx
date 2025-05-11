@@ -21,7 +21,7 @@ export const DonorPartnerSection: React.FC<DonorPartnerSectionProps> = ({ partne
   // Duplicate the partners array to create the seamless scrolling effect.
   // The CSS animation will scroll through the first set, and the second set will follow,
   // creating an infinite loop.
-  const duplicatedPartners = [...partners];
+  const duplicatedPartners = [...partners, ...partners];
 
   // Adjust animation duration for "slow" movement.
   // Example: 25 seconds base duration + 5 seconds per original partner.
