@@ -74,7 +74,7 @@ const thematicAreas: ThematicArea[] = [
         paragraphs: [
           'Education is the key to opportunity. But for Deaf individuals, it only works when delivered in a language and format they can access. Our mission is to create educational experiences that are not only inclusive but also empowering.',
         ],
-        ctaText: 'Want to learn more about our courses? Visit our Programs page.',
+        ctaText: 'Want to learn more about our courses? \nVisit our Programs page.',
         ctaLink: '/programs', // Adjust link as needed
       },
     ],
@@ -118,7 +118,7 @@ const thematicAreas: ThematicArea[] = [
         paragraphs: [
           'When we invest in Deaf talent, everyone benefits. Inclusion isn’t a favor, it’s a smart, sustainable path to economic growth. Our goal is simple: remove the barriers, then watch the brilliance unfold.',
         ],
-        ctaText: 'Want to collaborate or hire Deaf professionals? Contact our Career Team.',
+        ctaText: 'Want to collaborate or hire Deaf professionals? \nContact our Career Team.',
         ctaLink: '/contact', // Adjust link as needed
       },
     ],

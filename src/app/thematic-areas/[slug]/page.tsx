@@ -103,9 +103,9 @@ const ThematicAreaDetailPage: React.FC<ThematicAreaDetailPageProps> = ({ params 
               {section.ctaText && section.ctaLink && (
                 <div className="mt-6 text-center md:text-left">
                   <Link href={section.ctaLink}>
-                    <Button variant="default" size="lg" className="bg-blue-500 hover:bg-blue-600 text-white">
+                    <p className=" underline text-blue-500 hover:text-blue-600">
                       {section.ctaText}
-                    </Button>
+                    </p>
                   </Link>
                 </div>
               )}
