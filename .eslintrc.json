@@ -5,7 +5,7 @@
     // Your custom rules here (see examples below)
     "react/prop-types": "off", // Disable prop-types if using TypeScript
     "react/react-in-jsx-scope": "off" // Next.js 12+ doesn't require this
-  },
+    },
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
