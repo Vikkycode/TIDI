@@ -66,7 +66,7 @@ interface RenderNavLinkProps extends NavLink {
   closeMobileMenu: () => void;
   isMobileMenuOpen: boolean;
   activeDropdown?: string | null;
-  setActiveDropdown?: (label: string | null) => void;
+  setActiveDropdown?: (value: string | null) => void; // Changed 'label' to 'value' here
   onDesktopItemClick?: () => void;
 }
 
@@ -99,7 +99,7 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
     router.push(href);
     closeMobileMenu();
   };
-  
+
   const handleDesktopDirectLinkClick = () => {
     if (onDesktopItemClick) onDesktopItemClick();
     // Navigation is handled by Link component
