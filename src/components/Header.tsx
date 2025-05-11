@@ -115,7 +115,7 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
             onClick={handleMobileAccordionToggle}
             onTouchStart={handleMobileAccordionToggle} // Added touch event
             className={`flex items-center justify-between w-full text-left space-x-2 cursor-pointer font-medium focus:outline-none py-3 text-sm
-              ${isActive ? 'text-blue-400' : 'text-white'} hover:text-blue-300 transition duration-150`}
+              ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
             aria-expanded={isMobileSubmenuOpen}
           >
             <span>{label}</span>
@@ -167,7 +167,7 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
         <DropdownMenuTrigger asChild>
           <button
             className={`flex items-center space-x-1 cursor-pointer font-medium focus:outline-none px-3 py-2 text-sm
-              ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
+              ${isActive ? 'text-white' : 'text-blue-500'} hover:text-blue-300 transition duration-150`}
           >
             <span>{label}</span>
             <FaChevronDown className={`h-3 w-3 transition-transform duration-200 ${activeDropdown === label ? 'rotate-180' : ''}`} />
@@ -201,7 +201,7 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
       <Link
         href={href}
         className={`font-medium px-3 py-2 focus:outline-none text-sm
-          ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
+          ${isActive ? 'text-blue-600' : 'text-blue-500'} hover:text-blue-300 transition duration-150`}
         onClick={handleDesktopDirectLinkClick}
       >
         {label}
@@ -241,7 +241,7 @@ function Header() {
 
 
   return (
-    <header className={`fixed w-full py-2 top-0 z-50 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-black/70 backdrop-blur-md' : 'bg-transparent'}`}>
+    <header className={`fixed w-full py-2 top-0 z-50 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-black/70 backdrop-blur-md' : 'bg-white'}`}>
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
         <Link href="/" onClick={closeMobileMenu} aria-label="Home">
           <Image src="/assets/images/TIDI logo.png" alt="TIDI Logo" width={60} height={60} priority />
@@ -270,7 +270,7 @@ function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white hover:text-blue-300 focus:outline-none z-50" // Ensure button is above backdrop
+          className="md:hidden text-blue-600 hover:text-blue-300 focus:outline-none z-50" // Ensure button is above backdrop
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Mobile Menu"
           aria-expanded={isMobileMenuOpen}
