@@ -22,10 +22,10 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
           <div className="flex space-x-4 justify-center md:justify-start">
-            <Link href="#" className="text-gray-300 hover:text-white"><FaFacebook size={20} /></Link>
-            <Link href="#" className="text-gray-300 hover:text-white"><FaTwitter size={20} /></Link>
-            <Link href="#" className="text-gray-300 hover:text-white"><FaInstagram size={20} /></Link>
-            <Link href="" className="text-gray-300 hover:text-white"><FaLinkedin size={20} /></Link>
+            <Link href="https://www.facebook.com/thetidi" className="text-gray-300 hover:text-white"><FaFacebook size={20} /></Link>
+            <Link href="https://x.com/the_tidi?t=-Etvhoha7Lkxz-empNDKIw&s=09" className="text-gray-300 hover:text-white"><FaTwitter size={20} /></Link>
+            <Link href="https://www.instagram.com/techinclusiondeaf?igsh=aWNvZmt4YnlyazFh" className="text-gray-300 hover:text-white"><FaInstagram size={20} /></Link>
+            <Link href="https://www.linkedin.com/company/tech-inclusion-for-the-deaf-initiative/" className="text-gray-300 hover:text-white"><FaLinkedin size={20} /></Link>
           </div>
         </div>
       </div>
