@@ -30,7 +30,7 @@ const MissionPage: React.FC = () => {
 
         {/* Mission Statement Section */}
         <section className="py-16 bg-white">
-          <div className="container mx-auto px-4 md:px-0 text-center">
+          <div className="container mx-auto px-4 md:px-0 text-left">
             <p className="text-gray-800 text-lg md:text-xl mb-8">
               At TIDI (Tech Inclusion for the Deaf Initiative), we are driven by a commitment to bridge the digital divide for the Deaf community. 
               We believe that access to quality STEM education is not a privilege, but a right. 
@@ -49,7 +49,7 @@ const MissionPage: React.FC = () => {
               {/* Card 1 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/images/Accessible Edu.png" // Replace with relevant image
+                  src="/assets/images/Accessible Edu.jpg" // Replace with relevant image
                   alt="Accessible Education"
                   width={400}
                   height={300}

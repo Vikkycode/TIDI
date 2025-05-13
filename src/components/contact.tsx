@@ -106,7 +106,7 @@ export default function Contact() {
                 />
               </div>
               <CardFooter className="text-center">
-                <Button type="submit" disabled={status === 'loading'}>
+                <Button type="submit" className='bg-blue-500 hover:bg-blue-600 text-white' disabled={status === 'loading'}>
                   {status === 'loading' ? 'Sending...' : 'Send Message'}
                 </Button>
               </CardFooter>
