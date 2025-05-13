@@ -49,7 +49,7 @@ const MissionPage: React.FC = () => {
               {/* Card 1 */}
               <Card className="transform transition duration-300 ease-in-out hover:scale-105">
                 <Image
-                  src="/assets/images/Accessible Edu.jpg" // Replace with relevant image
+                  src="/assets/images/image1.jpg" // Replace with relevant image
                   alt="Accessible Education"
                   width={400}
                   height={300}
