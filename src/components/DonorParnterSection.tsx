@@ -31,7 +31,7 @@ export const DonorPartnerSection: React.FC<DonorPartnerSectionProps> = ({ partne
   return (
     <section className="py-16 bg-white" aria-labelledby="donor-partner-section-title">
       <div className="container mx-auto flex flex-col items-center justify-center px-4 md:px-0 text-center">
-        <h2 id="donor-partner-section-title" className="text-3xl md:text-4xl font-bold text-gray-800 mb-12">
+        <h2 id="donor-partner-section-title" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-800 mb-12">
           Our Partners
         </h2>
 

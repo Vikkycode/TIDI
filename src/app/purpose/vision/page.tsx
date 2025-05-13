@@ -34,7 +34,7 @@ const VisionPage: React.FC = () => {
         {/* Vision Statement Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 md:px-0 text-center">
-            <p className="text-gray-800 text-lg md:text-xl mb-8">
+            <p className="text-gray-800 text-lg md:text-xl mb-8 text-left">
               TIDI envisions a world where Deaf individuals are not only
               participants but leaders in the technology revolution. We see a
               future where Deaf children have equal access to STEM education,

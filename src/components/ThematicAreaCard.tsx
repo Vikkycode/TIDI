@@ -49,7 +49,7 @@ const ThematicAreaCard: React.FC<ThematicAreaCardProps> = ({ slug, title, icon, 
             </CardTitle>
           </CardHeader>
           <CardContent className="flex-grow text-center pb-6">
-            <CardDescription className="text-gray-600 text-sm leading-relaxed">
+            <CardDescription className="text-gray-600 text-sm leading-relaxed prose prose-sm sm:prose-base max-w-none text-left">
               {description}
             </CardDescription>
           </CardContent>

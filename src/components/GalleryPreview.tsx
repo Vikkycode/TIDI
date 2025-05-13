@@ -45,7 +45,7 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({ images, galleryLink }) 
           ))}
         </div>
         <Link href={galleryLink}>
-          <Button className="mt-8">View Full Gallery</Button>
+          <Button className="mt-8 bg-blue-500 hover:bg-blue-600">View Full Gallery</Button>
         </Link>
       </div>
     </section>

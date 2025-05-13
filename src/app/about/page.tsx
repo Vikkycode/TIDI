@@ -42,7 +42,7 @@ return (
       <div className="container mx-auto px-4 md:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Mission</h2>
+            <h2 className="text-3xl font-bold  text-blue-500 hover:text-blue-600 transition-colors duration-300 mb-4">Our Mission</h2>
             <p className="text-gray-700 text-lg">{missionStatement}</p>
           </div>
           <div>

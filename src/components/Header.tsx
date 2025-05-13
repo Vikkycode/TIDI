@@ -6,11 +6,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuPortal,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon, XIcon } from 'lucide-react';
 import React, { useState, useEffect, memo, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown } from 'react-icons/fa'; // FaChevronRight is removed as shadcn provides it
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavLink {
@@ -65,11 +69,12 @@ interface RenderNavLinkProps extends NavLink {
   level?: number;
   closeMobileMenu: () => void;
   isMobileMenuOpen: boolean;
-  isScrolled: boolean; // Added for dynamic desktop link styling
+  isScrolled: boolean;
   activeDropdown?: string | null;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   setActiveDropdown?: (_value: string | null) => void;
   onDesktopItemClick?: () => void;
+  isInsideDropdown?: boolean;
 }
 
 const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
@@ -80,10 +85,11 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
   level = 0,
   closeMobileMenu,
   isMobileMenuOpen,
-  isScrolled, // Destructure new prop
+  isScrolled,
   activeDropdown,
   setActiveDropdown,
   onDesktopItemClick,
+  isInsideDropdown = false,
 }) => {
   const router = useRouter();
   const isActive = pathname === href || (href !== '/' && pathname.startsWith(href)) || (subLinks && subLinks.some(sub => pathname.startsWith(sub.href)));
@@ -91,10 +97,10 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
 
   const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
 
-  const handleMobileAccordionToggle = (e: React.MouseEvent) => { // Changed to only MouseEvent
+  const handleMobileAccordionToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isDropdown) {
-      setIsMobileSubmenuOpen(prev => !prev); // Use functional update
+      setIsMobileSubmenuOpen(prev => !prev);
     }
   };
 
@@ -105,6 +111,9 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
 
   const handleDesktopDirectLinkClick = () => {
     if (onDesktopItemClick) onDesktopItemClick();
+    if (isInsideDropdown && setActiveDropdown) {
+        setActiveDropdown(null);
+    }
   };
 
   // --- Mobile Menu Rendering ---
@@ -113,8 +122,7 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
       return (
         <div className="w-full">
           <button
-            onClick={handleMobileAccordionToggle} // Only onClick
-            // onTouchStart removed
+            onClick={handleMobileAccordionToggle}
             className={`flex items-center justify-between w-full text-left space-x-2 cursor-pointer font-medium focus:outline-none py-3 text-sm
               ${isActive ? 'text-blue-500' : 'text-white'} hover:text-blue-300 transition duration-150`}
             aria-expanded={isMobileSubmenuOpen}
@@ -139,7 +147,8 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
                     level={level + 1}
                     closeMobileMenu={closeMobileMenu}
                     isMobileMenuOpen={isMobileMenuOpen}
-                    isScrolled={isScrolled} // Pass isScrolled (though not used by mobile styles here)
+                    isScrolled={isScrolled}
+                    isInsideDropdown={isInsideDropdown}
                   />
                 ))}
               </motion.div>
@@ -148,11 +157,9 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
         </div>
       );
     } else {
-      // Mobile direct link
       return (
         <button
-          onClick={handleMobileDirectLinkClick} // Only onClick
-          // onTouchStart removed
+          onClick={handleMobileDirectLinkClick}
           className={`block w-full text-left font-medium py-3 text-sm
             ${isActive ? 'text-blue-400' : 'text-white'} hover:text-blue-300 transition duration-150`}
         >
@@ -163,59 +170,116 @@ const RenderNavLinkComponent: React.FC<RenderNavLinkProps> = ({
   }
 
   // --- Desktop Menu Rendering ---
-  // Determine colors based on isScrolled (which implies header background color)
-  const desktopBaseTextColor = isScrolled ? 'text-white' : 'text-gray-700'; // Adjusted for bg-white
-  const desktopActiveTextColor = isScrolled ? 'text-blue-300' : 'text-blue-600';
-  const desktopHoverTextColor = isScrolled ? 'hover:text-blue-300' : 'hover:text-blue-700';
+  let desktopBaseTextColor = isScrolled ? 'text-white' : 'text-gray-700';
+  let desktopActiveTextColor = isScrolled ? 'text-blue-300' : 'text-blue-600';
+  let desktopHoverTextColor = isScrolled ? 'hover:text-blue-300' : 'hover:text-blue-700';
 
+  if (isInsideDropdown) {
+    desktopBaseTextColor = 'text-gray-200';
+    desktopActiveTextColor = 'text-blue-400';
+    desktopHoverTextColor = 'hover:text-white';
+  }
 
-  if (isDropdown && setActiveDropdown) {
-    return (
-      <DropdownMenu open={activeDropdown === label} onOpenChange={(open) => setActiveDropdown(open ? label : null)}>
-        <DropdownMenuTrigger asChild>
-          <button
-            className={`flex items-center space-x-1 cursor-pointer font-medium focus:outline-none px-3 py-2 text-sm
-              ${isActive ? desktopActiveTextColor : desktopBaseTextColor} ${desktopHoverTextColor} transition duration-150`}
+  if (isDropdown) { // Current item HAS sublinks
+    if (isInsideDropdown) { // Render as a SUBMENU
+      return (
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger
+            // The default shadcn subtrigger should have its own arrow.
+            // We ensure text and default arrow are spaced correctly with justify-between.
+            className={`flex items-center justify-between w-full text-left px-3 py-2 text-sm rounded cursor-pointer data-[state=open]:bg-gray-700
+              ${isActive ? desktopActiveTextColor : desktopBaseTextColor} ${desktopHoverTextColor} transition-colors duration-150`}
           >
             <span>{label}</span>
-            <FaChevronDown className={`h-3 w-3 transition-transform duration-200 ${activeDropdown === label ? 'rotate-180' : ''}`} />
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          className="bg-black/70 backdrop-blur-md shadow-lg rounded-md p-1 border border-gray-700 mt-2 w-52"
-          onMouseLeave={() => setActiveDropdown(null)}
-        >
-          {subLinks?.map((subLink) => (
-            <DropdownMenuItem key={subLink.label} asChild className="focus:bg-gray-700 rounded p-0 text-sm">
-              <RenderNavLinkComponent
-                pathname={pathname}
-                {...subLink}
-                level={level + 1}
-                closeMobileMenu={closeMobileMenu}
-                isMobileMenuOpen={false}
-                isScrolled={isScrolled} // Pass isScrolled
-                activeDropdown={activeDropdown}
-                setActiveDropdown={setActiveDropdown}
-                onDesktopItemClick={onDesktopItemClick}
-              />
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  } else {
-    // Desktop direct link
+            {/* Explicit FaChevronRight removed, shadcn/ui provides its own */}
+          </DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent
+              className="bg-black/80 backdrop-blur-md shadow-lg rounded-md p-1 border border-gray-700 w-56"
+              sideOffset={5}
+              alignOffset={-5}
+            >
+              {subLinks?.map((subSubLink) => (
+                <DropdownMenuItem
+                  key={subSubLink.label}
+                  asChild={!subSubLink.subLinks}
+                  className={`focus:bg-gray-600 rounded w-full text-sm ${subSubLink.subLinks ? "p-0" : ""}`}
+                  onSelect={subSubLink.subLinks ? (e) => e.preventDefault() : undefined}
+                >
+                  <RenderNavLinkComponent
+                    pathname={pathname}
+                    {...subSubLink}
+                    level={level + 1}
+                    closeMobileMenu={closeMobileMenu}
+                    isMobileMenuOpen={false}
+                    isScrolled={isScrolled}
+                    onDesktopItemClick={onDesktopItemClick}
+                    isInsideDropdown={true}
+                  />
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+      );
+    } else if (setActiveDropdown) { // Render as a TOP-LEVEL DropdownMenu
+      return (
+        <DropdownMenu open={activeDropdown === label} onOpenChange={(open) => setActiveDropdown(open ? label : null)}>
+          <DropdownMenuTrigger asChild>
+            <button
+              className={`flex items-center space-x-1.5 cursor-pointer font-medium focus:outline-none px-3 py-2 text-sm
+                ${isActive ? desktopActiveTextColor : desktopBaseTextColor} ${desktopHoverTextColor} transition-colors duration-150`}
+            >
+              <span>{label}</span>
+              {/* Container for the chevron to help stabilize it */}
+              <div className="w-3 h-3 flex items-center justify-center">
+                <FaChevronDown
+                  className={`transition-transform duration-200 ease-in-out ${activeDropdown === label ? 'rotate-180' : ''}`}
+                  style={{ willChange: 'transform' }} // Hint for GPU acceleration
+                />
+              </div>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            className="bg-black/80 backdrop-blur-md shadow-lg rounded-md p-1 border border-gray-700 mt-2 w-56"
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            {subLinks?.map((subLink) => (
+              <DropdownMenuItem
+                key={subLink.label}
+                asChild={!subLink.subLinks}
+                className={`focus:bg-gray-700 rounded w-full text-sm ${subLink.subLinks ? "p-0" : ""}`}
+                onSelect={subLink.subLinks ? (e) => e.preventDefault() : undefined}
+              >
+                <RenderNavLinkComponent
+                  pathname={pathname}
+                  {...subLink}
+                  level={level + 1}
+                  closeMobileMenu={closeMobileMenu}
+                  isMobileMenuOpen={false}
+                  isScrolled={isScrolled}
+                  onDesktopItemClick={onDesktopItemClick}
+                  isInsideDropdown={true}
+                />
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+  } else { // Current item is a direct LINK (no sublinks)
     return (
       <Link
         href={href}
-        className={`font-medium px-3 py-2 focus:outline-none text-sm
-          ${isActive ? desktopActiveTextColor : desktopBaseTextColor} ${desktopHoverTextColor} transition duration-150`}
+        className={`block w-full text-left font-medium px-3 py-2 focus:outline-none text-sm rounded
+          ${isActive ? desktopActiveTextColor : desktopBaseTextColor} ${desktopHoverTextColor} transition-colors duration-150`}
         onClick={handleDesktopDirectLinkClick}
       >
         {label}
       </Link>
     );
   }
+  return null;
 };
 
 
@@ -246,7 +310,6 @@ function Header() {
     };
   }, [isMobileMenuOpen]);
 
-
   return (
     <header className={`fixed w-full py-2 top-0 z-50 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'bg-black/70 backdrop-blur-md' : 'bg-white'}`}>
       <div className="container mx-auto flex items-center justify-between px-4 md:px-6">
@@ -267,18 +330,19 @@ function Header() {
                 pathname={pathname}
                 closeMobileMenu={closeMobileMenu}
                 isMobileMenuOpen={false}
-                isScrolled={isScrolled} // Pass isScrolled to desktop nav items
+                isScrolled={isScrolled}
                 activeDropdown={activeDropdown}
                 setActiveDropdown={setActiveDropdown}
                 onDesktopItemClick={() => setActiveDropdown(null)}
+                isInsideDropdown={false}
               />
             </div>
           ))}
-        </nav> {/* Corrected closing tag */}
+        </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button (in header bar) */}
         <button
-          className={`md:hidden focus:outline-none z-50 transition-colors duration-150 ${isScrolled || isMobileMenuOpen ? 'text-white hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'}`}
+          className={`md:hidden focus:outline-none z-[51] transition-colors duration-150 ${isScrolled || isMobileMenuOpen ? 'text-white hover:text-blue-300' : 'text-blue-600 hover:text-blue-800'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle Mobile Menu"
           aria-expanded={isMobileMenuOpen}
@@ -286,7 +350,7 @@ function Header() {
           {isMobileMenuOpen ? <XIcon className='h-7 w-7' /> : <MenuIcon className="h-7 w-7" />}
         </button>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Backdrop & Panel ... (remains the same) ... */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -306,7 +370,7 @@ function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="md:hidden fixed top-0 right-0 w-full max-w-xs h-screen bg-gray-900 shadow-xl z-50 overflow-y-auto p-6"
+              className="md:hidden fixed top-0 right-0 w-full max-w-xs h-screen bg-gray-900 shadow-xl z-50 overflow-y-auto p-6 pt-4"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-8">
@@ -322,7 +386,8 @@ function Header() {
                     pathname={pathname}
                     closeMobileMenu={closeMobileMenu}
                     isMobileMenuOpen={true}
-                    isScrolled={isScrolled} // Pass isScrolled (though not directly used by mobile styles here)
+                    isScrolled={isScrolled}
+                    isInsideDropdown={false}
                   />
                 ))}
               </nav>

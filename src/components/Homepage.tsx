@@ -106,7 +106,7 @@ const HomePage: React.FC<HomePageProps> = ({ impactData, galleryImages, partners
                 <h2 id="about-us-title" className="text-3xl md:text-4xl font-bold text-blue-500 text-center mb-8">
                   Empowering Deaf Individuals Through Tech
                 </h2>
-                <p className="text-gray-600 text-lg md:text-xl mb-6">
+                <p className="text-gray-600 text-lg md:text-xl mb-6 prose prose-sm sm:prose-base max-w-none leading-relaxed text-left">
                   At TIDI, we are passionate about fostering inclusivity and opportunity within the deaf community. We believe technology can be a powerful tool for empowerment, and we are dedicated to equipping deaf individuals with the skills they need to thrive in the digital world.
                 </p>
                 <Link href="/about">
