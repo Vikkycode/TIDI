@@ -1,4 +1,6 @@
 // src/components/DonorParnterSection.tsx
+// src/components/DonorParnterSection.tsx
+'use client';
 import React from 'react';
 // import { motion } from 'framer-motion'; // motion can still be used for the parent container if desired
 import DonorPartnerLogo from './DonorPartnerLogo';

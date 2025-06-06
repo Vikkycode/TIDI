@@ -136,7 +136,7 @@ const ServicesPage: React.FC = () => {
                     <CardDescription className="text-gray-600 mb-4">
                       {service.description}
                     </CardDescription>
-                    <Link href={service.linkUrl} passHref legacyBehavior>
+                    {/* <Link href={service.linkUrl} passHref legacyBehavior>
                       <Button
                         variant="outline"
                         className="mt-auto w-full sm:w-auto self-start border-indigo-600 text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700"
@@ -144,7 +144,7 @@ const ServicesPage: React.FC = () => {
                       >
                         Learn More
                       </Button>
-                    </Link>
+                    </Link> */}
                   </CardContent>
                 </Card>
               ))}

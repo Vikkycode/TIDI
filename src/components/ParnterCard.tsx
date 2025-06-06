@@ -1,3 +1,5 @@
+// src/components/ParnterCard.tsx
+'use client';
 import React from 'react';
 import { InfiniteMovingCards } from './ui/infinite-moving-cards';
 import { DonorPartner } from './DonorParnterSection'; // Adjust the path if necessary

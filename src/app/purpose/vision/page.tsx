@@ -134,11 +134,11 @@ const VisionPage: React.FC = () => {
                   Donate
                 </Button>
               </Link>
-              <Link href="/get-involved">
+              {/* <Link href="/get-involved">
                 <Button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-full transition duration-300">
                   Get Involved
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </section>

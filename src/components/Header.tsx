@@ -33,7 +33,7 @@ const navLinks: NavLink[] = [
       {
         label: 'Team', href: '/team', subLinks: [
           { label: 'Key Staff', href: '/team/key-staff' },
-          { label: 'State Champions', href: '/team/state-champions' },
+          // { label: 'State Champions', href: '/team/state-champions' },
         ]
       },
     ]

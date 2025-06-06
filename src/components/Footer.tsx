@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-center mt-8 text-white">
-        &copy; {new Date().getFullYear()} Tech Inclusion Deaf Initiative. All rights reserved.
+        &copy; {new Date().getFullYear()} Tech Inclusion Deaf for the  Initiative. All rights reserved.
       </div>
     </footer>
   );

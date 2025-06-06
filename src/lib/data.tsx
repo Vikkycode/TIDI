@@ -37,7 +37,7 @@ export interface ThematicArea {
 
 const thematicAreas: ThematicArea[] = [
   {
-    slug: 'tech-education',
+    slug: 'inclusive-tech-education', // Match the slug in thematicAreasDetails.ts
     title: 'Inclusive Tech Education for Deaf Learners',
     icon: <Image src={qualityedu} width={128} height={128} alt="Quality Education Icon" />,
     description:
@@ -80,7 +80,7 @@ const thematicAreas: ThematicArea[] = [
     ],
   },
   {
-    slug: 'career-development',
+    slug: 'empowering-deaf-talent', // Match the slug in thematicAreasDetails.ts
     title: 'Empowering Deaf Talent Through Career Development',
     icon: <Image src={economic} width={128} height={128} alt="Decent Work and Economic Growth Icon" />,
     description:
@@ -124,7 +124,7 @@ const thematicAreas: ThematicArea[] = [
     ],
   },
   {
-    slug: 'advocacy-awareness',
+    slug: 'fighting-inequality', // Match the slug in thematicAreasDetails.ts
     title: 'Fighting Inequality Through Awareness',
     icon: <Image src={inequality} width={128} height={128} alt="Reduced Inequality Icon" />, // Corrected alt text
     description:
@@ -159,7 +159,7 @@ const thematicAreas: ThematicArea[] = [
     ],
   },
   {
-    slug: 'community-support',
+    slug: 'building-stronger-communities', // Match the slug in thematicAreasDetails.ts
     title: 'Building Stronger Communities Through Partnerships',
     icon: <Image src={partnerIcon} width={128} height={128} alt="Partnerships for the Goals Icon" />, // Corrected alt text
     description:
