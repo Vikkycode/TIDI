@@ -66,7 +66,7 @@ const GalleryPreview: React.FC<GalleryPreviewProps> = ({ images, galleryLink }) 
           </a>
         </Link>
       </div>
-      <style jsx global>{`
+      <style>{`
         .animate-fade-in {
           animation: fadeIn 0.7s;
         }

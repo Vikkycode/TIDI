@@ -2,7 +2,7 @@
 
 import React from 'react';
 import HomePage from '@/components/Homepage';
-import CloudinaryGallery from '@/components/CloudinaryGallery';
+// import CloudinaryGallery from '@/components/CloudinaryGallery';
 
 
 export default function Home() {

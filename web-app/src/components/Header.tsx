@@ -72,8 +72,7 @@ interface RenderNavLinkProps extends NavLink {
   isMobileMenuOpen: boolean;
   isScrolled: boolean;
   activeDropdown?: string | null;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  setActiveDropdown?: (_value: string | null) => void;
+  // setActiveDropdown?: (_value: string | null) => void;
   onDesktopItemClick?: () => void;
   isInsideDropdown?: boolean;
 }

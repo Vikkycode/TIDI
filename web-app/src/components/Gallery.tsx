@@ -80,7 +80,7 @@ const Gallery: React.FC<GalleryProps> = ({ galleryData }) => {
           </TabsContent>
         ))}
       </Tabs>
-      <style jsx global>{`
+      <style>{`
         .animate-fade-in {
           animation: fadeIn 0.7s;
         }

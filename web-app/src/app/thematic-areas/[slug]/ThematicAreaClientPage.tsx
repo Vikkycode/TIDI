@@ -170,7 +170,7 @@ const ThematicAreaClientPage: React.FC<ThematicAreaClientPageProps> = ({ themati
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {thematicArea.successStories.map((story, index) => (
                <Card key={index} className="bg-slate-50 p-6 rounded-xl shadow-lg hover:shadow-purple-200/50 transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col">
-                 <CardContent className="p-0 flex-grow"> <blockquote className="text-gray-700 italic mb-4 leading-relaxed">"{story.quote}"</blockquote> </CardContent>
+                 <CardContent className="p-0 flex-grow"> <blockquote className="text-gray-700 italic mb-4 leading-relaxed">&quot;{story.quote}&quot;</blockquote> </CardContent>
                  <CardFooter className="p-0 pt-4 border-t border-border-light mt-auto"> <p className="text-sm font-semibold text-gray-800">{story.person}, <span className="font-normal text-gray-600">{story.role}</span></p> </CardFooter>
                </Card>
             ))}

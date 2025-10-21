@@ -4,9 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchAPI } from "@/lib/api";
-import data from "@/lib/data";
 import { getStrapiMedia } from "@/lib/media";
-
 interface BlogListClientProps {
   initialPosts: any[];
 }

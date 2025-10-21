@@ -194,7 +194,7 @@ const ProgramsPage: React.FC = () => {
                     <Image src="/assets/icons/empty-calendar.svg" alt="Empty calendar illustration" width={120} height={120} className="mx-auto mb-6 opacity-70" />
                     <h3 className="text-2xl font-semibold text-text-primary mb-3">No Programs Yet</h3>
                     <p className="text-text-secondary max-w-md mx-auto">
-                        We're busy planning impactful programs and events. Please check back soon for updates, or subscribe to our newsletter!
+                        We&apos;re busy planning impactful programs and events. Please check back soon for updates, or subscribe to our newsletter!
                     </p>
                     <Link href="/contact?subject=NewsletterSubscribe" className="mt-6 inline-block">
                         <Button size="lg" className="bg-tidi-accent hover:bg-tidi-accent-hover text-text-on-accent font-semibold">

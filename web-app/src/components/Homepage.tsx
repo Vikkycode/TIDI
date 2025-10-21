@@ -11,8 +11,8 @@ import { DonorPartnerSection } from '@/components/DonorParnterSection';
 import thematicAreas from '@/lib/data'; // Import your thematic area data (short descriptions)
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { FaHandshake, FaHandsHelping, FaWheelchair, FaLightbulb, FaUsers } from 'react-icons/fa';
-import { fetchAPI } from "@/lib/api";
-import BlogCarousel from "@/components/blog/BlogCarousel";
+// import { fetchAPI } from "@/lib/api";
+// import BlogCarousel from "@/components/blog/BlogCarousel";
 
 const defaultImpactData = [
   { title: 'Educated', number: 300, description: 'Deaf students trained in Tech Careers and Mentorship.', link: '/educated' },
@@ -68,11 +68,11 @@ const valuesData: ValueItem[] = [
 ];
 // const lazyFeatureSection = React.lazy(()=> import('./FeatureSection'))
 
-const HomePage: React.FC<HomePageProps> = async ({ impactData = defaultImpactData, galleryImages, partners }) => {
+const HomePage: React.FC<HomePageProps> = ({galleryImages, partners }) => {
   const [expandedValue, setExpandedValue] = useState<string | null>(null);
 
-  const response = await fetchAPI("/blog-posts?populate=*&sort=createdAt:desc&pagination[limit]=6");
-  const posts = response?.data || [];
+  // const response = await fetchAPI("/blog-posts?populate=*&sort=createdAt:desc&pagination[limit]=6");
+  // const posts = response?.data || [];
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },

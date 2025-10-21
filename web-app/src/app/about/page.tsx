@@ -2,8 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Target, Eye, Users, Award, Handshake } from 'lucide-react'; // Added more icons for potential use
-import { ImpactCard } from '@/components/ImpactCard';
+import { Target, Eye} from 'lucide-react'; // Added more icons for potential use
+// import { ImpactCard } from '@/components/ImpactCard';
+
 import { DonorPartnerSection } from '@/components/DonorParnterSection';
 
 const AboutUs: React.FC = () => {
@@ -88,10 +89,10 @@ return (
               The journey of the Tech Inclusion for the Deaf Initiative (TIDI) began not in a boardroom, but in the vibrant halls of the University of Ilorin in 2019. We, Victor and Abubakar, were two students united by a burgeoning passion for technology, particularly Python. Eager to dive deeper, we enrolled in a month-long Hack Brain bootcamp.
             </motion.p>
             <p>
-              While our enthusiasm was high, the reality of the learning environment quickly set in. We found ourselves struggling to keep pace, to grasp concepts that weren't delivered in an accessible way. Our learning became a testament to sheer determination – countless hours spent surfing the internet, poring over YouTube tutorials, often huddled together on the cold floor outside the Department of Educational Technology, just to catch the public Wi-Fi signal late into the night.
+              While our enthusiasm was high, the reality of the learning environment quickly set in. We found ourselves struggling to keep pace, to grasp concepts that weren&apos;t delivered in an accessible way. Our learning became a testament to sheer determination – countless hours spent surfing the internet, poring over YouTube tutorials, often huddled together on the cold floor outside the Department of Educational Technology, just to catch the public Wi-Fi signal late into the night.
             </p>
             <p>
-              It was through these shared struggles that the seed for TIDI was planted. We experienced firsthand the profound lack of accessibility in tech education for Deaf individuals. We knew there had to be a better way, a path where passion wasn't stifled by barriers.
+              It was through these shared struggles that the seed for TIDI was planted. We experienced firsthand the profound lack of accessibility in tech education for Deaf individuals. We knew there had to be a better way, a path where passion wasn&apos;t stifled by barriers.
             </p>
             <p>
               The dream of establishing an NGO to address these challenges was born during our university days. However, financial constraints and the demands of our studies meant we had to put our plans on hold, though the vision never faded. We kept the dream alive, always on the same page, waiting for the right moment.
@@ -100,10 +101,10 @@ return (
               Upon completing our studies, we immediately set to work. TIDI was founded on a simple yet powerful premise: to empower Deaf individuals through quality tech education, delivered in sign language by experienced Deaf facilitators – facilitators like us, who understood the journey.
             </p>
             <p>
-              We've seen too many bright minds in the Deaf community lose out on incredible opportunities simply because the path wasn't made accessible. Our core motivation is to ensure that no Deaf individual has to endure the hardships we faced. We want to help them unlock their full potential, pursue their dreams in tech, and secure meaningful employment through practical skills and internship opportunities.
+              We&apos;ve seen too many bright minds in the Deaf community lose out on incredible opportunities simply because the path wasn&apos;t made accessible. Our core motivation is to ensure that no Deaf individual has to endure the hardships we faced. We want to help them unlock their full potential, pursue their dreams in tech, and secure meaningful employment through practical skills and internship opportunities.
             </p>
             <p>
-              TIDI is more than just an initiative; it's a commitment. A commitment to breaking down barriers, fostering inclusivity, and building a future where Deaf individuals are not just participants, but leaders and innovators in the tech landscape – across Nigeria, Africa, and the world.
+              TIDI is more than just an initiative; it&apos;s a commitment. A commitment to breaking down barriers, fostering inclusivity, and building a future where Deaf individuals are not just participants, but leaders and innovators in the tech landscape – across Nigeria, Africa, and the world.
             </p>
           </div>
         </div>
@@ -130,7 +131,7 @@ return (
           {/* You can replace this with an actual image of you and Abubakar or a relevant team photo */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-6 md:p-8">
-            <h3 className="text-white text-xl md:text-2xl font-semibold drop-shadow-md">The Founders' Journey</h3>
+            <h3 className="text-white text-xl md:text-2xl font-semibold drop-shadow-md">The Founders&apos; Journey</h3>
             <p className="text-slate-200 text-sm md:text-base mt-1 drop-shadow-sm">United by a vision for an inclusive tech future.</p>
           </div>
         </div>
@@ -183,7 +184,7 @@ return (
         className="py-16 md:py-24 bg-slate-100"
         aria-labelledby="our-impact-title"
       >
-        <div className="container mx-auto px-4 md:px-6">
+        {/* <div className="container mx-auto px-4 md:px-6">
           <h2 id="our-impact-title" className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-700 text-center mb-12 md:mb-16">
             Our Impact
           </h2>
@@ -194,7 +195,7 @@ return (
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
       </motion.section><DonorPartnerSection partners={donorPartners} /></>
   </div>
 )
