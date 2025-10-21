@@ -206,7 +206,7 @@ const ThematicAreaClientPage: React.FC<ThematicAreaClientPageProps> = ({ themati
           <div className="flex flex-wrap justify-center gap-6">
             {thematicArea.callsToAction.map((cta, index) => (
               <Link key={index} href={cta.link} passHref legacyBehavior>
-                <Button size="lg" variant={cta.variant || 'default'} className={`font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-colors duration-300`}>
+                <Button size="lg" className={`font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-colors duration-300`}>
                   {cta.text}
                 </Button>
               </Link>
