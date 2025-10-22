@@ -17,6 +17,37 @@ interface HeroSlide {
   buttonLink?: string;
 }
 const slides: HeroSlide[] = [
+<<<<<<< HEAD
+  {
+    title: 'Deaf Tech Innovators',
+    description: 'Empowering the Deaf community through tech skills and opportunities',
+    imageUrl: '/assets/images/image7.jpg',
+    imageAlt: 'deaf parnters',
+    buttonText:'Learn More',
+    buttonLink: '/team/key-staff',
+  },
+  {
+    title: 'Tech Inclusion for All',
+    description: 'Building a vibrant tech community, empowering Deaf individuals',
+    imageUrl: '/assets/images/image8.jpg',
+    imageAlt: 'deaf community',
+    buttonText:'Explore',
+    buttonLink: '/gallery',
+  },
+  {
+    title: 'Shaping the Deaf Digital World',
+    description: 'Hands-on tech training and development for the Deaf community',
+    imageUrl: '/assets/images/image10.jpg',
+    imageAlt: 'hand-on practical workshop',
+    buttonText:'Discover',
+    buttonLink: '/gallery',
+  },
+  // Add more slides...
+];
+
+
+
+=======
   // {
   //   title: 'Empowering Deaf Students in Minna',
   //   description: 'Career mentorship workshop inspiring Deaf secondary school students in Minna to pursue technology and innovation.',
@@ -68,6 +99,7 @@ const slides: HeroSlide[] = [
 ];
 
 
+>>>>>>> cb739da (update files)
 const HeroCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const timerRef = useRef<Timeout | null>(null);

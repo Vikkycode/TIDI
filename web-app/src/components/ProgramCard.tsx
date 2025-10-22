@@ -5,7 +5,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 // import { ProgramItem } from '@/app/programs/page'; // OLD IMPORT - REMOVE THIS
+<<<<<<< HEAD
+import { ProgramItem, BaselineReport } from '@/lib/types'; // NEW IMPORT - Adjust path if your types file is elsewhere
+=======
 import { ProgramItem } from '@/lib/types'; // NEW IMPORT - Adjust path if your types file is elsewhere
+>>>>>>> cb739da (update files)
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CalendarDays, MapPin, ArrowRight, FileText, AlertTriangle } from 'lucide-react';
@@ -13,7 +17,11 @@ import { motion } from 'framer-motion';
 
 interface ProgramCardProps {
   program: ProgramItem;
+<<<<<<< HEAD
+  onViewReport?: (report: BaselineReport | undefined) => void; // Updated type for clarity
+=======
   // onViewReport?: (undefined) => void; 
+>>>>>>> cb739da (update files)
 }
 
 const ProgramCard: React.FC<ProgramCardProps> = ({ program, onViewReport }) => {

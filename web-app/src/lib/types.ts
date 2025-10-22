@@ -33,6 +33,9 @@ export interface ReportSectionDataPoint {
     ctaLink?: string;
     report?: BaselineReport;
   }
+<<<<<<< HEAD
+  
+=======
   
 
   // Define types for Strapi API responses
@@ -96,3 +99,4 @@ export interface BlogPost {
   publishedAt: string;
   coverImage: StrapiCollectionResponse<StrapiImage>;
 }
+>>>>>>> cb739da (update files)

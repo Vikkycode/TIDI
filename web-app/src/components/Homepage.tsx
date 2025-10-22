@@ -4,13 +4,22 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeroCarousel from '@/components/HeroCarousel';
+<<<<<<< HEAD
+import { ImpactCard } from '@/components/ImpactCard';
+=======
 import ImpactSection from '@/components/ImpactSection';
+>>>>>>> cb739da (update files)
 import ThematicAreaCard from '@/components/ThematicAreaCard';
 import GalleryPreview from '@/components/GalleryPreview';
 import { DonorPartnerSection } from '@/components/DonorParnterSection';
 import thematicAreas from '@/lib/data'; // Import your thematic area data (short descriptions)
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { FaHandshake, FaHandsHelping, FaWheelchair, FaLightbulb, FaUsers } from 'react-icons/fa';
+<<<<<<< HEAD
+
+interface HomePageProps {
+  impactData: { title: string; number: string | number; description: string; link?: string }[];
+=======
 // import { fetchAPI } from "@/lib/api";
 // import BlogCarousel from "@/components/blog/BlogCarousel";
 
@@ -23,6 +32,7 @@ const defaultImpactData = [
 
 interface HomePageProps {
   impactData?: { title: string; number: number; description: string; link?: string }[];
+>>>>>>> cb739da (update files)
   galleryImages: { src: string; alt: string; caption?: string; category: string }[];
   partners: { name: string; logo: string; link?: string }[];
 }
@@ -68,12 +78,18 @@ const valuesData: ValueItem[] = [
 ];
 // const lazyFeatureSection = React.lazy(()=> import('./FeatureSection'))
 
+<<<<<<< HEAD
+const HomePage: React.FC<HomePageProps> = ({ impactData, galleryImages, partners }) => {
+  const [expandedValue, setExpandedValue] = useState<string | null>(null);
+
+=======
 const HomePage: React.FC<HomePageProps> = ({galleryImages, partners }) => {
   const [expandedValue, setExpandedValue] = useState<string | null>(null);
 
   // const response = await fetchAPI("/blog-posts?populate=*&sort=createdAt:desc&pagination[limit]=6");
   // const posts = response?.data || [];
 
+>>>>>>> cb739da (update files)
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", staggerChildren: 0.2 } },
@@ -243,6 +259,26 @@ const HomePage: React.FC<HomePageProps> = ({galleryImages, partners }) => {
           className="py-16 md:py-24 bg-slate-100"
           aria-labelledby="impact-title"
         >
+<<<<<<< HEAD
+          <div className="container mx-auto px-4 md:px-6">
+            <h2 id="impact-title" className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-700 text-center mb-12 md:mb-16">
+              Our Impact
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {impactData.map((item, index) => (
+                <motion.div key={index} variants={itemVariants} className="h-full">
+                  <ImpactCard {...item} />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        <GalleryPreview
+          images={galleryImages}
+          galleryLink="/gallery"
+        />
+=======
          <ImpactSection impactData={defaultImpactData} />
         </motion.section>
 
@@ -252,6 +288,7 @@ const HomePage: React.FC<HomePageProps> = ({galleryImages, partners }) => {
         {/* Gallery Preview Section */}
 
         <GalleryPreview images={galleryImages} galleryLink="/gallery" />
+>>>>>>> cb739da (update files)
 
         {/* Partners Section */}
         <DonorPartnerSection partners={partners} />

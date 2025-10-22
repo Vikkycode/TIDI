@@ -1,4 +1,7 @@
+'use client';
+import React from 'react';
 import Link from 'next/link';
+
 import { FaFacebook, FaTwitter, FaInstagram,FaLinkedin } from 'react-icons/fa'; // Example social icons
 
 export default function Footer() {
@@ -35,3 +38,4 @@ export default function Footer() {
     </footer>
   );
 }
+

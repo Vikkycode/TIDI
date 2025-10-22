@@ -13,8 +13,13 @@ export const metadata: Metadata = {
   title: 'TIDI - Tech Inclusion for the Deaf Initiative',
   description: 'Empowering Deaf individuals through tech education and opportunities.',
   icons: {
+<<<<<<< HEAD
+    icon: '/TIDI logo.ico',
+    shortcut: '/TIDI logo.ico',
+=======
     icon: '/TIDI logo.png',
     shortcut: '/TIDI logo.png',
+>>>>>>> cb739da (update files)
   },
 };
 

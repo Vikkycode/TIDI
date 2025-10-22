@@ -170,7 +170,11 @@ const ThematicAreaClientPage: React.FC<ThematicAreaClientPageProps> = ({ themati
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {thematicArea.successStories.map((story, index) => (
                <Card key={index} className="bg-slate-50 p-6 rounded-xl shadow-lg hover:shadow-purple-200/50 transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col">
+<<<<<<< HEAD
+                 <CardContent className="p-0 flex-grow"> <blockquote className="text-gray-700 italic mb-4 leading-relaxed">"{story.quote}"</blockquote> </CardContent>
+=======
                  <CardContent className="p-0 flex-grow"> <blockquote className="text-gray-700 italic mb-4 leading-relaxed">&quot;{story.quote}&quot;</blockquote> </CardContent>
+>>>>>>> cb739da (update files)
                  <CardFooter className="p-0 pt-4 border-t border-border-light mt-auto"> <p className="text-sm font-semibold text-gray-800">{story.person}, <span className="font-normal text-gray-600">{story.role}</span></p> </CardFooter>
                </Card>
             ))}
@@ -206,7 +210,16 @@ const ThematicAreaClientPage: React.FC<ThematicAreaClientPageProps> = ({ themati
           <div className="flex flex-wrap justify-center gap-6">
             {thematicArea.callsToAction.map((cta, index) => (
               <Link key={index} href={cta.link} passHref legacyBehavior>
+<<<<<<< HEAD
+                <Button size="lg" variant={cta.variant || 'default'} className={`font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-colors duration-300
+                   ${cta.variant === 'primary' ? 'bg-blue-600 hover:bg-blue-700 text-white' : ''}
+                   ${cta.variant === 'secondary' ? 'bg-purple-600 hover:bg-purple-700 text-white' : ''}
+                   ${cta.variant === 'outline' ? 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white' : ''}
+                   ${cta.variant === 'default' ? 'bg-gray-800 hover:bg-gray-900 text-white' : ''}
+                `}>
+=======
                 <Button size="lg" className={`font-semibold text-lg px-8 py-3 rounded-lg shadow-md hover:shadow-lg transition-colors duration-300`}>
+>>>>>>> cb739da (update files)
                   {cta.text}
                 </Button>
               </Link>

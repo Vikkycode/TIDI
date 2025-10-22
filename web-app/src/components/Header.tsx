@@ -61,7 +61,9 @@ const navLinks: NavLink[] = [
       { label: 'Services', href: '/services' },
     ]
   },
+
   { label: 'Blog', href: '/blog' },
+
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -72,7 +74,12 @@ interface RenderNavLinkProps extends NavLink {
   isMobileMenuOpen: boolean;
   isScrolled: boolean;
   activeDropdown?: string | null;
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+  setActiveDropdown?: (_value: string | null) => void;
+
   // setActiveDropdown?: (_value: string | null) => void;
+
   onDesktopItemClick?: () => void;
   isInsideDropdown?: boolean;
 }
@@ -338,6 +345,7 @@ function Header() {
               />
             </div>
           ))}
+
           <div>
         <Link
           href="http://localhost:1337/admin"
@@ -350,6 +358,7 @@ function Header() {
         </Link>
         </div>
 </nav>
+
 
         {/* Mobile Menu Button (in header bar) */}
         <button
@@ -401,6 +410,7 @@ function Header() {
                     isInsideDropdown={false}
                   />
                 ))}
+              
               <div className='w-full'>
               <Link
                 href="http://localhost:1337/admin"
@@ -412,6 +422,7 @@ function Header() {
                 Admin
               </Link>
               </div>
+
               </nav>
             </motion.div>
           )}
